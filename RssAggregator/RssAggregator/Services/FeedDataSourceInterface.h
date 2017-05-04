@@ -10,6 +10,8 @@
 
 @protocol FeedsDelegate <NSObject>
 
+@required
+- (void)feedSourcesFetched:(NSArray<NSString *> *)sources;
 @optional
 - (void)feedDidAdd:(NSString *)value;
 - (void)feedDidRemoveAtIndex:(NSUInteger)index;

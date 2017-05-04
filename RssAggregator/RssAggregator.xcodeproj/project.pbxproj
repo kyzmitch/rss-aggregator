@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		36BBA00CBBB29BE0F8246CED /* libPods-RssAggregator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FD22C9C58A7079F4ECE2FDF /* libPods-RssAggregator.a */; };
 		84F754BA1EBBB2EE0043F0DB /* FeedsLocalDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F754B91EBBB2EE0043F0DB /* FeedsLocalDataSource.m */; };
+		84F754BD1EBBC1AE0043F0DB /* NewsListTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F754BC1EBBC1AE0043F0DB /* NewsListTableDataSource.m */; };
 		C7C7183A1EBB8ED600E7874A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C718391EBB8ED600E7874A /* main.m */; };
 		C7C7183D1EBB8ED600E7874A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C7183C1EBB8ED600E7874A /* AppDelegate.m */; };
 		C7C718451EBB8ED600E7874A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7C718441EBB8ED600E7874A /* Assets.xcassets */; };
@@ -29,6 +30,8 @@
 		84F754B71EBBB2EE0043F0DB /* FeedDataSourceInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedDataSourceInterface.h; path = Services/FeedDataSourceInterface.h; sourceTree = "<group>"; };
 		84F754B81EBBB2EE0043F0DB /* FeedsLocalDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedsLocalDataSource.h; path = Services/FeedsLocalDataSource.h; sourceTree = "<group>"; };
 		84F754B91EBBB2EE0043F0DB /* FeedsLocalDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedsLocalDataSource.m; path = Services/FeedsLocalDataSource.m; sourceTree = "<group>"; };
+		84F754BB1EBBC1AE0043F0DB /* NewsListTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsListTableDataSource.h; path = Screens/NewsList/NewsListTableDataSource.h; sourceTree = "<group>"; };
+		84F754BC1EBBC1AE0043F0DB /* NewsListTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsListTableDataSource.m; path = Screens/NewsList/NewsListTableDataSource.m; sourceTree = "<group>"; };
 		C70254261E9ADA521406D8F4 /* Pods-RssAggregator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RssAggregator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RssAggregator/Pods-RssAggregator.debug.xcconfig"; sourceTree = "<group>"; };
 		C7C718351EBB8ED600E7874A /* RssAggregator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RssAggregator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7C718391EBB8ED600E7874A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -172,6 +175,8 @@
 				C7C718551EBB8F4E00E7874A /* NewsList.storyboard */,
 				C7C718601EBB905500E7874A /* NewsListViewController.h */,
 				C7C718611EBB905500E7874A /* NewsListViewController.m */,
+				84F754BB1EBBC1AE0043F0DB /* NewsListTableDataSource.h */,
+				84F754BC1EBBC1AE0043F0DB /* NewsListTableDataSource.m */,
 			);
 			name = NewsList;
 			sourceTree = "<group>";
@@ -314,6 +319,7 @@
 				C7C7183D1EBB8ED600E7874A /* AppDelegate.m in Sources */,
 				C7C7185F1EBB8FD100E7874A /* FeedSourcesViewController.m in Sources */,
 				C7C7186E1EBB98FA00E7874A /* FeedSourcesTableViewDataSource.m in Sources */,
+				84F754BD1EBBC1AE0043F0DB /* NewsListTableDataSource.m in Sources */,
 				C7C718681EBB90B200E7874A /* UITabBarController+Custom.m in Sources */,
 				84F754BA1EBBB2EE0043F0DB /* FeedsLocalDataSource.m in Sources */,
 				C7C7185C1EBB8FAE00E7874A /* BaseViewController.m in Sources */,

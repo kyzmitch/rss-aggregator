@@ -45,6 +45,9 @@
                             <constraint firstItem="hE2-7m-gXq" firstAttribute="leading" secondItem="YR2-VR-AQN" secondAttribute="leadingMargin" id="Sli-yq-w2a"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="newsTableView" destination="hE2-7m-gXq" id="27q-0L-9w6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rg4-B0-KiY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

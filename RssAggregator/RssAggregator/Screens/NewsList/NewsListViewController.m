@@ -8,7 +8,9 @@
 
 #import "NewsListViewController.h"
 
-@interface NewsListViewController ()
+@interface NewsListViewController () <FeedsDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *newsTableView;
 
 @end
 
@@ -24,13 +26,21 @@
     return self;
 }
 
-- (void)inject:(id<FeedDataSourceInterface>)feedDataSourceInterface {
-    
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+#pragma mark - FeedInjectable
+
+- (void)inject:(id<FeedDataSourceInterface>)feedDataSourceInterface {
+    feedDataSourceInterface.delegate = self;
+}
+
+#pragma mark - FeedsDelegate
+
+- (void)feedSourcesFetched:(NSArray<NSString *> *)sources {
+    
 }
 
 @end
