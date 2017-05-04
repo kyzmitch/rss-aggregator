@@ -1,0 +1,29 @@
+//
+//  UITabBarController+Custom.m
+//  RssAggregator
+//
+//  Created by Andrey Ermoshin on 04/05/2017.
+//  Copyright © 2017 andreiermoshin. All rights reserved.
+//
+
+#import "UITabBarController+Custom.h"
+#import "UIStoryboard+Custom.h"
+#import "NewsListViewController.h"
+#import "FeedSourcesViewController.h"
+
+@implementation UITabBarController (Custom)
+
++(nullable UITabBarController *)customTabBarController {
+    FeedSourcesViewController *feedSources = [UIStoryboard feedSourcesController];
+    NewsListViewController *newsList = [UIStoryboard newsListController];
+    
+    UINavigationController *feedSourcesNavCtrl = [[UINavigationController alloc] initWithRootViewController:feedSources];
+    UINavigationController *newsListNavCtrl = [[UINavigationController alloc] initWithRootViewController:newsList];
+    
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    [tabBarController setViewControllers:@[feedSourcesNavCtrl, newsListNavCtrl] animated:NO];
+    
+    return tabBarController;
+}
+
+@end
