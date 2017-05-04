@@ -11,10 +11,11 @@
 #import "FeedSourcesPresenterImpl.h"
 #import "FeedsLocalDataSource.h"
 
-@interface FeedSourcesViewController ()
+@interface FeedSourcesViewController () <FeedSourcesView>
 
 @property (weak, nonatomic) IBOutlet UITableView *feedSources;
 @property (strong, nonatomic) id<FeedSourcesPresenter> presenter;
+@property (strong, nonatomic) FeedSourcesTableViewDataSource *dataSource;
 
 @end
 
@@ -28,6 +29,7 @@
     
     self.title = @"Feed sources";
     _presenter = [[FeedSourcesPresenterImpl alloc] initWithView:self source:[FeedsLocalDataSource new]];
+    _dataSource = [FeedSourcesTableViewDataSource new];
     
     return self;
 }
@@ -36,11 +38,9 @@
     [super viewDidLoad];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addSource)];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+    self.feedSources.dataSource = self.dataSource;
     
+    // load only once
     [self.presenter loadFeedSources];
 }
 
@@ -51,12 +51,12 @@
 #pragma mark - FeedSourcesView
 
 - (void)feedSourcesLoaded:(NSArray<NSString *> *)sources {
-    self.feedSources.dataSource = [FeedSourcesTableViewDataSource new];
+    self.dataSource.dataSource = sources;
     [self.feedSources reloadData];
 }
 
 - (void)failedLoadFeedSources {
-    
+    [self showAlertWithMessage:@"Failed load feed sources"];
 }
 
 #pragma mark - Common View

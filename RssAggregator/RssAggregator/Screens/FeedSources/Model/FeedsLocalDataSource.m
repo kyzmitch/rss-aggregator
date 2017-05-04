@@ -13,6 +13,10 @@
 - (NSArray<NSString *> *)fetch {
     NSMutableArray<NSString *> *array = [NSMutableArray new];
     
+    // Several hardcoded resources (nsuserdefaults could be used or some another local storage)
+    [array addObject:@"https://lenta.ru/rss/news"];
+    [array addObject:@"https://lenta.ru/rss/articles"];
+    [array addObject:@"https://news.yandex.ru/computers.rss"];
     return [[NSArray alloc] initWithArray:array copyItems:NO];
 }
 
