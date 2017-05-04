@@ -7,21 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36BBA00CBBB29BE0F8246CED /* libPods-RssAggregator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FD22C9C58A7079F4ECE2FDF /* libPods-RssAggregator.a */; };
 		C7C7183A1EBB8ED600E7874A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C718391EBB8ED600E7874A /* main.m */; };
 		C7C7183D1EBB8ED600E7874A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C7183C1EBB8ED600E7874A /* AppDelegate.m */; };
 		C7C718451EBB8ED600E7874A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7C718441EBB8ED600E7874A /* Assets.xcassets */; };
 		C7C718481EBB8ED600E7874A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7C718461EBB8ED600E7874A /* LaunchScreen.storyboard */; };
 		C7C718541EBB8F3A00E7874A /* FeedSources.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7C718531EBB8F3A00E7874A /* FeedSources.storyboard */; };
 		C7C718561EBB8F4E00E7874A /* NewsList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7C718551EBB8F4E00E7874A /* NewsList.storyboard */; };
-		C7C718581EBB8F6300E7874A /* FullArticle.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7C718571EBB8F6300E7874A /* FullArticle.storyboard */; };
 		C7C7185C1EBB8FAE00E7874A /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C7185B1EBB8FAE00E7874A /* BaseViewController.m */; };
 		C7C7185F1EBB8FD100E7874A /* FeedSourcesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C7185E1EBB8FD100E7874A /* FeedSourcesViewController.m */; };
 		C7C718621EBB905500E7874A /* NewsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C718611EBB905500E7874A /* NewsListViewController.m */; };
 		C7C718681EBB90B200E7874A /* UITabBarController+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C718671EBB90B200E7874A /* UITabBarController+Custom.m */; };
 		C7C7186B1EBB910100E7874A /* UIStoryboard+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C7186A1EBB910100E7874A /* UIStoryboard+Custom.m */; };
+		C7C7186E1EBB98FA00E7874A /* FeedSourcesTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C7186D1EBB98FA00E7874A /* FeedSourcesTableViewDataSource.m */; };
+		C7C718761EBB9D5E00E7874A /* FeedSourcesPresenterImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C718751EBB9D5E00E7874A /* FeedSourcesPresenterImpl.m */; };
+		C7C7187A1EBBA04600E7874A /* FeedsLocalDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C718791EBBA04600E7874A /* FeedsLocalDataSource.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2FD22C9C58A7079F4ECE2FDF /* libPods-RssAggregator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RssAggregator.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C70254261E9ADA521406D8F4 /* Pods-RssAggregator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RssAggregator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RssAggregator/Pods-RssAggregator.debug.xcconfig"; sourceTree = "<group>"; };
 		C7C718351EBB8ED600E7874A /* RssAggregator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RssAggregator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7C718391EBB8ED600E7874A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C7C7183B1EBB8ED600E7874A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -31,7 +36,6 @@
 		C7C718491EBB8ED600E7874A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7C718531EBB8F3A00E7874A /* FeedSources.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = FeedSources.storyboard; path = Screens/FeedSources/FeedSources.storyboard; sourceTree = "<group>"; };
 		C7C718551EBB8F4E00E7874A /* NewsList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = NewsList.storyboard; path = Screens/NewsList/NewsList.storyboard; sourceTree = "<group>"; };
-		C7C718571EBB8F6300E7874A /* FullArticle.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = FullArticle.storyboard; path = Screens/FullArticle/FullArticle.storyboard; sourceTree = "<group>"; };
 		C7C7185A1EBB8FAE00E7874A /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseViewController.h; path = Screens/BaseViewController.h; sourceTree = "<group>"; };
 		C7C7185B1EBB8FAE00E7874A /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseViewController.m; path = Screens/BaseViewController.m; sourceTree = "<group>"; };
 		C7C7185D1EBB8FD100E7874A /* FeedSourcesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedSourcesViewController.h; path = Screens/FeedSources/FeedSourcesViewController.h; sourceTree = "<group>"; };
@@ -42,6 +46,16 @@
 		C7C718671EBB90B200E7874A /* UITabBarController+Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITabBarController+Custom.m"; path = "Categories/UITabBarController+Custom.m"; sourceTree = "<group>"; };
 		C7C718691EBB910100E7874A /* UIStoryboard+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIStoryboard+Custom.h"; path = "Categories/UIStoryboard+Custom.h"; sourceTree = "<group>"; };
 		C7C7186A1EBB910100E7874A /* UIStoryboard+Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIStoryboard+Custom.m"; path = "Categories/UIStoryboard+Custom.m"; sourceTree = "<group>"; };
+		C7C7186C1EBB98FA00E7874A /* FeedSourcesTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedSourcesTableViewDataSource.h; path = Screens/FeedSources/FeedSourcesTableViewDataSource.h; sourceTree = "<group>"; };
+		C7C7186D1EBB98FA00E7874A /* FeedSourcesTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedSourcesTableViewDataSource.m; path = Screens/FeedSources/FeedSourcesTableViewDataSource.m; sourceTree = "<group>"; };
+		C7C718721EBB9B6F00E7874A /* FeedSourcesPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedSourcesPresenter.h; path = Screens/FeedSources/FeedSourcesPresenter.h; sourceTree = "<group>"; };
+		C7C718731EBB9BD800E7874A /* CommonViewInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonViewInterface.h; path = Screens/CommonViewInterface.h; sourceTree = "<group>"; };
+		C7C718741EBB9D5E00E7874A /* FeedSourcesPresenterImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedSourcesPresenterImpl.h; path = Screens/FeedSources/FeedSourcesPresenterImpl.h; sourceTree = "<group>"; };
+		C7C718751EBB9D5E00E7874A /* FeedSourcesPresenterImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedSourcesPresenterImpl.m; path = Screens/FeedSources/FeedSourcesPresenterImpl.m; sourceTree = "<group>"; };
+		C7C718781EBBA04600E7874A /* FeedsLocalDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedsLocalDataSource.h; path = Screens/FeedSources/Model/FeedsLocalDataSource.h; sourceTree = "<group>"; };
+		C7C718791EBBA04600E7874A /* FeedsLocalDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedsLocalDataSource.m; path = Screens/FeedSources/Model/FeedsLocalDataSource.m; sourceTree = "<group>"; };
+		C7C7187B1EBBA06100E7874A /* FeedDataSourceInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedDataSourceInterface.h; path = Screens/FeedSources/Model/FeedDataSourceInterface.h; sourceTree = "<group>"; };
+		D306A750A81E462DE8F457D9 /* Pods-RssAggregator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RssAggregator.release.xcconfig"; path = "Pods/Target Support Files/Pods-RssAggregator/Pods-RssAggregator.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,17 +63,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36BBA00CBBB29BE0F8246CED /* libPods-RssAggregator.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		63BFED7F3843C049FFD82E7F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C70254261E9ADA521406D8F4 /* Pods-RssAggregator.debug.xcconfig */,
+				D306A750A81E462DE8F457D9 /* Pods-RssAggregator.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		8A48555ED4658A49FE142ADA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2FD22C9C58A7079F4ECE2FDF /* libPods-RssAggregator.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C7C7182C1EBB8ED600E7874A = {
 			isa = PBXGroup;
 			children = (
 				C7C718371EBB8ED600E7874A /* RssAggregator */,
 				C7C718361EBB8ED600E7874A /* Products */,
+				63BFED7F3843C049FFD82E7F /* Pods */,
+				8A48555ED4658A49FE142ADA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,11 +131,11 @@
 		C7C7184F1EBB8EF700E7874A /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				C7C718521EBB8F1300E7874A /* FullArticle */,
 				C7C718511EBB8F0C00E7874A /* NewsList */,
 				C7C718501EBB8F0500E7874A /* FeedSources */,
 				C7C7185A1EBB8FAE00E7874A /* BaseViewController.h */,
 				C7C7185B1EBB8FAE00E7874A /* BaseViewController.m */,
+				C7C718731EBB9BD800E7874A /* CommonViewInterface.h */,
 			);
 			name = Screens;
 			sourceTree = "<group>";
@@ -109,9 +143,15 @@
 		C7C718501EBB8F0500E7874A /* FeedSources */ = {
 			isa = PBXGroup;
 			children = (
+				C7C718771EBB9FB900E7874A /* Model */,
 				C7C718531EBB8F3A00E7874A /* FeedSources.storyboard */,
 				C7C7185D1EBB8FD100E7874A /* FeedSourcesViewController.h */,
 				C7C7185E1EBB8FD100E7874A /* FeedSourcesViewController.m */,
+				C7C7186C1EBB98FA00E7874A /* FeedSourcesTableViewDataSource.h */,
+				C7C7186D1EBB98FA00E7874A /* FeedSourcesTableViewDataSource.m */,
+				C7C718721EBB9B6F00E7874A /* FeedSourcesPresenter.h */,
+				C7C718741EBB9D5E00E7874A /* FeedSourcesPresenterImpl.h */,
+				C7C718751EBB9D5E00E7874A /* FeedSourcesPresenterImpl.m */,
 			);
 			name = FeedSources;
 			sourceTree = "<group>";
@@ -126,14 +166,6 @@
 			name = NewsList;
 			sourceTree = "<group>";
 		};
-		C7C718521EBB8F1300E7874A /* FullArticle */ = {
-			isa = PBXGroup;
-			children = (
-				C7C718571EBB8F6300E7874A /* FullArticle.storyboard */,
-			);
-			name = FullArticle;
-			sourceTree = "<group>";
-		};
 		C7C718651EBB909900E7874A /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +177,16 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
+		C7C718771EBB9FB900E7874A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C7C718781EBBA04600E7874A /* FeedsLocalDataSource.h */,
+				C7C718791EBBA04600E7874A /* FeedsLocalDataSource.m */,
+				C7C7187B1EBBA06100E7874A /* FeedDataSourceInterface.h */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -152,9 +194,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C7C7184C1EBB8ED600E7874A /* Build configuration list for PBXNativeTarget "RssAggregator" */;
 			buildPhases = (
+				9BE897C69CE267178C4F6E24 /* [CP] Check Pods Manifest.lock */,
 				C7C718311EBB8ED600E7874A /* Sources */,
 				C7C718321EBB8ED600E7874A /* Frameworks */,
 				C7C718331EBB8ED600E7874A /* Resources */,
+				4A495D967B493ACB305C42D9 /* [CP] Embed Pods Frameworks */,
+				2DB43C0A46707C2C3EDC2DCD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -206,13 +251,60 @@
 			files = (
 				C7C718481EBB8ED600E7874A /* LaunchScreen.storyboard in Resources */,
 				C7C718451EBB8ED600E7874A /* Assets.xcassets in Resources */,
-				C7C718581EBB8F6300E7874A /* FullArticle.storyboard in Resources */,
 				C7C718541EBB8F3A00E7874A /* FeedSources.storyboard in Resources */,
 				C7C718561EBB8F4E00E7874A /* NewsList.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2DB43C0A46707C2C3EDC2DCD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RssAggregator/Pods-RssAggregator-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4A495D967B493ACB305C42D9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RssAggregator/Pods-RssAggregator-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9BE897C69CE267178C4F6E24 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C7C718311EBB8ED600E7874A /* Sources */ = {
@@ -221,9 +313,12 @@
 			files = (
 				C7C7183D1EBB8ED600E7874A /* AppDelegate.m in Sources */,
 				C7C7185F1EBB8FD100E7874A /* FeedSourcesViewController.m in Sources */,
+				C7C7186E1EBB98FA00E7874A /* FeedSourcesTableViewDataSource.m in Sources */,
 				C7C718681EBB90B200E7874A /* UITabBarController+Custom.m in Sources */,
+				C7C7187A1EBBA04600E7874A /* FeedsLocalDataSource.m in Sources */,
 				C7C7185C1EBB8FAE00E7874A /* BaseViewController.m in Sources */,
 				C7C7183A1EBB8ED600E7874A /* main.m in Sources */,
+				C7C718761EBB9D5E00E7874A /* FeedSourcesPresenterImpl.m in Sources */,
 				C7C7186B1EBB910100E7874A /* UIStoryboard+Custom.m in Sources */,
 				C7C718621EBB905500E7874A /* NewsListViewController.m in Sources */,
 			);
@@ -335,6 +430,7 @@
 		};
 		C7C7184D1EBB8ED600E7874A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C70254261E9ADA521406D8F4 /* Pods-RssAggregator.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ERT5B59458;
@@ -347,6 +443,7 @@
 		};
 		C7C7184E1EBB8ED600E7874A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D306A750A81E462DE8F457D9 /* Pods-RssAggregator.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ERT5B59458;
@@ -376,6 +473,7 @@
 				C7C7184E1EBB8ED600E7874A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

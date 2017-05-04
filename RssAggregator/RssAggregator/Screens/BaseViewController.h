@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BaseViewController : UIViewController
+@protocol CMGAlertable <NSObject>
+
+- (void)showDecisionAlertWithMessage:(NSString *)msg okHandler:(void (^)(void))okBlock;
+- (void)showAlertWithMessage:(NSString *)message;
+
+@end
+
+@interface BaseViewController : UIViewController <CMGAlertable>
+
+@property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
 
 @end

@@ -26,7 +26,7 @@
                                 <rect key="frame" x="16" y="20" width="343" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KRg-mk-ble">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="kFeedSourceCellId" id="KRg-mk-ble">
                                         <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KRg-mk-ble" id="DeR-Mo-ee8">
@@ -45,6 +45,9 @@
                             <constraint firstItem="RIx-Gg-Ftu" firstAttribute="top" secondItem="aW3-ZS-LAp" secondAttribute="bottom" id="zaY-Fo-sI8"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="feedSources" destination="RIx-Gg-Ftu" id="Ami-9u-5SP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O8g-R9-O1p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
