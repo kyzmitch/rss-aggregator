@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		36BBA00CBBB29BE0F8246CED /* libPods-RssAggregator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FD22C9C58A7079F4ECE2FDF /* libPods-RssAggregator.a */; };
+		84F754BA1EBBB2EE0043F0DB /* FeedsLocalDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F754B91EBBB2EE0043F0DB /* FeedsLocalDataSource.m */; };
 		C7C7183A1EBB8ED600E7874A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C718391EBB8ED600E7874A /* main.m */; };
 		C7C7183D1EBB8ED600E7874A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C7183C1EBB8ED600E7874A /* AppDelegate.m */; };
 		C7C718451EBB8ED600E7874A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7C718441EBB8ED600E7874A /* Assets.xcassets */; };
@@ -21,11 +22,13 @@
 		C7C7186B1EBB910100E7874A /* UIStoryboard+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C7186A1EBB910100E7874A /* UIStoryboard+Custom.m */; };
 		C7C7186E1EBB98FA00E7874A /* FeedSourcesTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C7186D1EBB98FA00E7874A /* FeedSourcesTableViewDataSource.m */; };
 		C7C718761EBB9D5E00E7874A /* FeedSourcesPresenterImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C718751EBB9D5E00E7874A /* FeedSourcesPresenterImpl.m */; };
-		C7C7187A1EBBA04600E7874A /* FeedsLocalDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C718791EBBA04600E7874A /* FeedsLocalDataSource.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2FD22C9C58A7079F4ECE2FDF /* libPods-RssAggregator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RssAggregator.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		84F754B71EBBB2EE0043F0DB /* FeedDataSourceInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedDataSourceInterface.h; path = Services/FeedDataSourceInterface.h; sourceTree = "<group>"; };
+		84F754B81EBBB2EE0043F0DB /* FeedsLocalDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedsLocalDataSource.h; path = Services/FeedsLocalDataSource.h; sourceTree = "<group>"; };
+		84F754B91EBBB2EE0043F0DB /* FeedsLocalDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedsLocalDataSource.m; path = Services/FeedsLocalDataSource.m; sourceTree = "<group>"; };
 		C70254261E9ADA521406D8F4 /* Pods-RssAggregator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RssAggregator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RssAggregator/Pods-RssAggregator.debug.xcconfig"; sourceTree = "<group>"; };
 		C7C718351EBB8ED600E7874A /* RssAggregator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RssAggregator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7C718391EBB8ED600E7874A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -52,9 +55,6 @@
 		C7C718731EBB9BD800E7874A /* CommonViewInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonViewInterface.h; path = Screens/CommonViewInterface.h; sourceTree = "<group>"; };
 		C7C718741EBB9D5E00E7874A /* FeedSourcesPresenterImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedSourcesPresenterImpl.h; path = Screens/FeedSources/FeedSourcesPresenterImpl.h; sourceTree = "<group>"; };
 		C7C718751EBB9D5E00E7874A /* FeedSourcesPresenterImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedSourcesPresenterImpl.m; path = Screens/FeedSources/FeedSourcesPresenterImpl.m; sourceTree = "<group>"; };
-		C7C718781EBBA04600E7874A /* FeedsLocalDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedsLocalDataSource.h; path = Screens/FeedSources/Model/FeedsLocalDataSource.h; sourceTree = "<group>"; };
-		C7C718791EBBA04600E7874A /* FeedsLocalDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedsLocalDataSource.m; path = Screens/FeedSources/Model/FeedsLocalDataSource.m; sourceTree = "<group>"; };
-		C7C7187B1EBBA06100E7874A /* FeedDataSourceInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedDataSourceInterface.h; path = Screens/FeedSources/Model/FeedDataSourceInterface.h; sourceTree = "<group>"; };
 		D306A750A81E462DE8F457D9 /* Pods-RssAggregator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RssAggregator.release.xcconfig"; path = "Pods/Target Support Files/Pods-RssAggregator/Pods-RssAggregator.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,6 +77,16 @@
 				D306A750A81E462DE8F457D9 /* Pods-RssAggregator.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		84F754B61EBBB2590043F0DB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				84F754B71EBBB2EE0043F0DB /* FeedDataSourceInterface.h */,
+				84F754B81EBBB2EE0043F0DB /* FeedsLocalDataSource.h */,
+				84F754B91EBBB2EE0043F0DB /* FeedsLocalDataSource.m */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 		8A48555ED4658A49FE142ADA /* Frameworks */ = {
@@ -108,6 +118,7 @@
 		C7C718371EBB8ED600E7874A /* RssAggregator */ = {
 			isa = PBXGroup;
 			children = (
+				84F754B61EBBB2590043F0DB /* Services */,
 				C7C718651EBB909900E7874A /* Categories */,
 				C7C7184F1EBB8EF700E7874A /* Screens */,
 				C7C7183B1EBB8ED600E7874A /* AppDelegate.h */,
@@ -143,7 +154,6 @@
 		C7C718501EBB8F0500E7874A /* FeedSources */ = {
 			isa = PBXGroup;
 			children = (
-				C7C718771EBB9FB900E7874A /* Model */,
 				C7C718531EBB8F3A00E7874A /* FeedSources.storyboard */,
 				C7C7185D1EBB8FD100E7874A /* FeedSourcesViewController.h */,
 				C7C7185E1EBB8FD100E7874A /* FeedSourcesViewController.m */,
@@ -175,16 +185,6 @@
 				C7C7186A1EBB910100E7874A /* UIStoryboard+Custom.m */,
 			);
 			name = Categories;
-			sourceTree = "<group>";
-		};
-		C7C718771EBB9FB900E7874A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				C7C718781EBBA04600E7874A /* FeedsLocalDataSource.h */,
-				C7C718791EBBA04600E7874A /* FeedsLocalDataSource.m */,
-				C7C7187B1EBBA06100E7874A /* FeedDataSourceInterface.h */,
-			);
-			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,7 +315,7 @@
 				C7C7185F1EBB8FD100E7874A /* FeedSourcesViewController.m in Sources */,
 				C7C7186E1EBB98FA00E7874A /* FeedSourcesTableViewDataSource.m in Sources */,
 				C7C718681EBB90B200E7874A /* UITabBarController+Custom.m in Sources */,
-				C7C7187A1EBBA04600E7874A /* FeedsLocalDataSource.m in Sources */,
+				84F754BA1EBBB2EE0043F0DB /* FeedsLocalDataSource.m in Sources */,
 				C7C7185C1EBB8FAE00E7874A /* BaseViewController.m in Sources */,
 				C7C7183A1EBB8ED600E7874A /* main.m in Sources */,
 				C7C718761EBB9D5E00E7874A /* FeedSourcesPresenterImpl.m in Sources */,

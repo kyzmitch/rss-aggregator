@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FeedDataSourceInterface.h"
 
 @interface UITabBarController (Custom)
 
-+(nullable UITabBarController *)customTabBarController;
++ (nullable UITabBarController *)tabBarControllerWithDataSource:(nonnull id<FeedDataSourceInterface>)dataSource;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "UITabBarController+Custom.h"
+#import "FeedsLocalDataSource.h"
 
 @interface AppDelegate ()
 
@@ -17,9 +18,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
     
-    UITabBarController *tabBarController = [UITabBarController customTabBarController];
+    UITabBarController *tabBarController = [UITabBarController tabBarControllerWithDataSource:[FeedsLocalDataSource new]];
     self.window.rootViewController = tabBarController;
     
     return YES;

@@ -7,7 +7,8 @@
 //
 
 #import "BaseViewController.h"
+#import "FeedDataSourceInterface.h"
 
-@interface NewsListViewController : BaseViewController
+@interface NewsListViewController : BaseViewController <FeedInjectable>
 
 @end

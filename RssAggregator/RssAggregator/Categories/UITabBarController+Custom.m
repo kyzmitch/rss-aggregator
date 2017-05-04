@@ -13,9 +13,11 @@
 
 @implementation UITabBarController (Custom)
 
-+(nullable UITabBarController *)customTabBarController {
++(nullable UITabBarController *)tabBarControllerWithDataSource:(id<FeedDataSourceInterface>)dataSource {
     FeedSourcesViewController *feedSources = [UIStoryboard feedSourcesController];
     NewsListViewController *newsList = [UIStoryboard newsListController];
+    [feedSources inject:dataSource];
+    [newsList inject:dataSource];
     
     UINavigationController *feedSourcesNavCtrl = [[UINavigationController alloc] initWithRootViewController:feedSources];
     UINavigationController *newsListNavCtrl = [[UINavigationController alloc] initWithRootViewController:newsList];

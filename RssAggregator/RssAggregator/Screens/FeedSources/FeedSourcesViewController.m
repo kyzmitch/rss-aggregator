@@ -9,7 +9,6 @@
 #import "FeedSourcesViewController.h"
 #import "FeedSourcesTableViewDataSource.h"
 #import "FeedSourcesPresenterImpl.h"
-#import "FeedsLocalDataSource.h"
 
 @interface FeedSourcesViewController () <FeedSourcesView>
 
@@ -28,10 +27,13 @@
     }
     
     self.title = @"Feed sources";
-    _presenter = [[FeedSourcesPresenterImpl alloc] initWithView:self source:[FeedsLocalDataSource new]];
     _dataSource = [FeedSourcesTableViewDataSource new];
     
     return self;
+}
+
+- (void)inject:(id<FeedDataSourceInterface>)feedDataSourceInterface {
+    _presenter = [[FeedSourcesPresenterImpl alloc] initWithView:self source:feedDataSourceInterface];
 }
 
 - (void)viewDidLoad {
