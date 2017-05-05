@@ -30,10 +30,19 @@
     if ([article isKindOfClass:[MWFeedItem class]]) {
         MWFeedItem *item = article;
         cell.textLabel.text = item.title;
+        cell.textLabel.numberOfLines = 0;
         cell.detailTextLabel.text = item.content;
+        cell.detailTextLabel.numberOfLines = 0;
     }
     
     return cell;
+}
+
+
+- (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    NSArray *keys = [self.source allKeys];
+    NSString *key = [keys objectAtIndex:section];
+    return key;
 }
 
 @end

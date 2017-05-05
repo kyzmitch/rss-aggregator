@@ -34,6 +34,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.newsTableView.estimatedRowHeight = 80;
     self.newsTableView.dataSource = self.tableDataSource;
 }
 

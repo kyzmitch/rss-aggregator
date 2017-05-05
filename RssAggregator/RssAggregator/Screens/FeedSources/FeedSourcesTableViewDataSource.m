@@ -17,6 +17,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"kFeedSourceCellId" forIndexPath:indexPath];
     cell.textLabel.text = [self.dataSource objectAtIndex:indexPath.row];
+    cell.textLabel.numberOfLines = 0;
     return cell;
 }
 
