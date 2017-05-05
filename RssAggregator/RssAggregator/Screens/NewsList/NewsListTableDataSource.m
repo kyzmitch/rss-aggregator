@@ -7,6 +7,7 @@
 //
 
 #import "NewsListTableDataSource.h"
+#import <MWFeedParser/MWFeedItem.h>
 
 @implementation NewsListTableDataSource
 
@@ -26,7 +27,12 @@
     NSArray *keys = [self.source allKeys];
     NSString *key = [keys objectAtIndex:indexPath.section];
     id article = [[self.source objectForKey:key] objectAtIndex:indexPath.row];
-    cell.textLabel.text = @"TODO";
+    if ([article isKindOfClass:[MWFeedItem class]]) {
+        MWFeedItem *item = article;
+        cell.textLabel.text = item.title;
+        cell.detailTextLabel.text = item.content;
+    }
+    
     return cell;
 }
 

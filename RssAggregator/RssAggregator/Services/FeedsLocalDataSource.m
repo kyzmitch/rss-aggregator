@@ -17,8 +17,13 @@
     
     // Several hardcoded resources (nsuserdefaults could be used or some another local storage)
     [array addObject:@"https://lenta.ru/rss/news"];
-    [array addObject:@"https://lenta.ru/rss/articles"];
-    [array addObject:@"https://news.yandex.ru/computers.rss"];
+    [array addObject:@"http://www.opennet.ru/opennews/opennews_6_noadv.rss"];
+    [array addObject:@"https://3dnews.ru/news/rss/"];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.delegate feedSourcesFetched:array];
+    });
+    
     return [[NSArray alloc] initWithArray:array copyItems:NO];
 }
 

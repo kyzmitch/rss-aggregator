@@ -7,10 +7,14 @@
 //
 
 #import "NewsListViewController.h"
+#import "NewsListPresenterImpl.h"
+#import "NewsListTableDataSource.h"
 
-@interface NewsListViewController () <FeedsDelegate>
+@interface NewsListViewController () <FeedsDelegate, NewsListView>
 
 @property (weak, nonatomic) IBOutlet UITableView *newsTableView;
+@property (strong, nonatomic) NewsListTableDataSource *tableDataSource;
+@property (strong, nonatomic) NewsListPresenterImpl *presenter;
 
 @end
 
@@ -23,12 +27,14 @@
     }
     
     self.title = @"News";
+    _tableDataSource = [NewsListTableDataSource new];
+    _presenter = [[NewsListPresenterImpl alloc] initWithView:self];
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.newsTableView.dataSource = self.tableDataSource;
 }
 
 #pragma mark - FeedInjectable
@@ -40,7 +46,28 @@
 #pragma mark - FeedsDelegate
 
 - (void)feedSourcesFetched:(NSArray<NSString *> *)sources {
+    [self.presenter fetchItemsForFeedSources:sources];
+}
+
+#pragma mark - NewsListView
+
+- (void)feedItemsLoaded:(NSMutableDictionary<NSString *, NSMutableArray *> *)itemsDictionary {
+    self.tableDataSource.source = itemsDictionary;
+    [self.newsTableView reloadData];
+}
+
+- (void)failedLoadFeedItems {
     
 }
 
+#pragma mark - Common View
+
+- (void)showProgress{
+    self.activityIndicator.hidden = NO;
+    [self.activityIndicator startAnimating];
+}
+
+- (void)hideProgress{
+    [self.activityIndicator stopAnimating];
+}
 @end
