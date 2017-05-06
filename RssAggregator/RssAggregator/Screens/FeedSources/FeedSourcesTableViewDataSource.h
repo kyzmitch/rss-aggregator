@@ -11,6 +11,6 @@
 
 @interface FeedSourcesTableViewDataSource : NSObject <UITableViewDataSource>
 
-@property (strong, nonatomic) NSArray<NSString *> *dataSource;
+@property (strong, nonatomic) NSMutableArray<NSString *> *dataSource;
 
 @end

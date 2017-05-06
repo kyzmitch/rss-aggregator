@@ -14,7 +14,7 @@
 - (void)feedSourcesFetched:(NSArray<NSString *> *)sources;
 @optional
 - (void)feedDidAdd:(NSString *)value;
-- (void)feedDidRemoveAtIndex:(NSUInteger)index;
+- (void)feedDidRemove:(NSString *)feed;
 - (void)feedDidUpdatedAtIndex:(NSUInteger)index withSource:(NSString *)source;
 
 @end
@@ -27,7 +27,7 @@
 
 @optional
 - (void)addSource:(NSString *)s;
-- (void)removeSourceAtIndex:(NSUInteger)index;
+- (NSString *)removeSourceAtIndex:(NSUInteger)index;
 - (void)updateSourceAtIndex:(NSUInteger)index withSource:(NSString *)s;
 
 @end

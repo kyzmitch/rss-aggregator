@@ -14,6 +14,7 @@
 @required
 - (void)feedSourcesLoaded:(NSArray<NSString *> *)sources;
 - (void)failedLoadFeedSources;
+- (void)feedRemoved:(NSString *)feed atIndex:(NSUInteger)ix;
 
 @end
 
@@ -21,5 +22,6 @@
 
 @required
 - (void)loadFeedSources;
+- (void)removeFeedSourceAtIndex:(NSUInteger)ix;
 
 @end

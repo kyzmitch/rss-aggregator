@@ -52,6 +52,14 @@
     [self.presenter fetchItemsForFeedSources:sources];
 }
 
+- (void)feedDidRemove:(NSString *)feed {
+    NSUInteger ix = [[self.tableDataSource.source allKeys] indexOfObject:feed];
+    [self.tableDataSource.source removeObjectForKey:feed];
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:ix];
+    
+    [self.newsTableView deleteSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
+}
+
 #pragma mark - NewsListView
 
 - (void)feedItemsLoaded:(NSMutableDictionary<NSString *, NSMutableArray *> *)itemsDictionary {

@@ -11,4 +11,6 @@
 
 @interface FeedsLocalDataSource : NSObject <FeedDataSourceInterface>
 
++ (FeedsLocalDataSource *)hardcodedFeeds;
+
 @end

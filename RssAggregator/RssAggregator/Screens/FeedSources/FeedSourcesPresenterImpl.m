@@ -40,4 +40,15 @@
     });
 }
 
+- (void)removeFeedSourceAtIndex:(NSUInteger)ix {
+    [self.feedSourcesView showProgress];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSString *removedFeed = [self.feedsDataSource removeSourceAtIndex:ix];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.feedSourcesView feedRemoved:removedFeed atIndex:ix];
+            [self.feedSourcesView hideProgress];
+        });
+    });
+}
+
 @end

@@ -9,12 +9,14 @@
 #import "FeedSourcesViewController.h"
 #import "FeedSourcesTableViewDataSource.h"
 #import "FeedSourcesPresenterImpl.h"
+#import "FeedSourcesTableDelegate.h"
 
-@interface FeedSourcesViewController () <FeedSourcesView>
+@interface FeedSourcesViewController () <FeedSourcesView, FeedDelegateBackProtocol>
 
 @property (weak, nonatomic) IBOutlet UITableView *feedSources;
 @property (strong, nonatomic) id<FeedSourcesPresenter> presenter;
 @property (strong, nonatomic) FeedSourcesTableViewDataSource *dataSource;
+@property (strong, nonatomic) FeedSourcesTableDelegate *tableDelegate;
 
 @end
 
@@ -28,6 +30,8 @@
     
     self.title = @"Feed sources";
     _dataSource = [FeedSourcesTableViewDataSource new];
+    _tableDelegate = [FeedSourcesTableDelegate new];
+    _tableDelegate.backDelegate = self;
     
     return self;
 }
@@ -44,8 +48,8 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addSource)];
     self.feedSources.dataSource = self.dataSource;
+    self.feedSources.delegate = self.tableDelegate;
     
-    // load only once
     [self.presenter loadFeedSources];
 }
 
@@ -56,12 +60,20 @@
 #pragma mark - FeedSourcesView
 
 - (void)feedSourcesLoaded:(NSArray<NSString *> *)sources {
-    self.dataSource.dataSource = sources;
+    NSMutableArray *arr = [NSMutableArray arrayWithArray:sources];
+    self.dataSource.dataSource = arr;
+    self.tableDelegate.dataSource = arr;
     [self.feedSources reloadData];
 }
 
 - (void)failedLoadFeedSources {
     [self showAlertWithMessage:@"Failed load feed sources"];
+}
+
+- (void)feedRemoved:(NSString *)feed atIndex:(NSUInteger)ix {
+    [self.dataSource.dataSource removeObject:feed];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:ix inSection:0];
+    [self.feedSources deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 #pragma mark - Common View
@@ -73,6 +85,12 @@
 
 - (void)hideProgress{
     [self.activityIndicator stopAnimating];
+}
+
+#pragma mark - BackDelegate
+
+- (void)feedDidRemoveAtIndexPath:(NSIndexPath *)index {
+    [self.presenter removeFeedSourceAtIndex:index.row];
 }
 
 @end

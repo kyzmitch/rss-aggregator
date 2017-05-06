@@ -8,23 +8,58 @@
 
 #import "FeedsLocalDataSource.h"
 
+@interface FeedsLocalDataSource ()
+
+@property (strong, nonatomic) NSMutableArray<NSString *> *array;
+
+@end
+
 @implementation FeedsLocalDataSource
 
 @synthesize delegate;
 
-- (NSArray<NSString *> *)fetch {
-    NSMutableArray<NSString *> *array = [NSMutableArray new];
+- (instancetype)init {
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+    
+    _array = [NSMutableArray new];
+    
+    return self;
+}
+
++ (FeedsLocalDataSource *)hardcodedFeeds {
+    FeedsLocalDataSource *collection = [FeedsLocalDataSource new];
     
     // Several hardcoded resources (nsuserdefaults could be used or some another local storage)
-    [array addObject:@"https://lenta.ru/rss/news"];
-    [array addObject:@"http://www.opennet.ru/opennews/opennews_6_noadv.rss"];
-    [array addObject:@"https://3dnews.ru/news/rss/"];
+    [collection.array addObject:@"https://lenta.ru/rss/news"];
+    [collection.array addObject:@"https://3dnews.ru/news/rss/"];
     
+    return collection;
+}
+
+- (NSArray<NSString *> *)fetch {
+    NSArray *copiedFeeds = [[NSArray alloc] initWithArray:self.array copyItems:NO];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.delegate feedSourcesFetched:array];
+        [self.delegate feedSourcesFetched:copiedFeeds];
     });
     
-    return [[NSArray alloc] initWithArray:array copyItems:NO];
+    return copiedFeeds;
+}
+
+
+- (NSString *)removeSourceAtIndex:(NSUInteger)index {
+    if (index >= self.array.count) {
+        return nil;
+    }
+    NSString *removedFeed = [self.array objectAtIndex:index];
+    [self.array removeObjectAtIndex:index];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.delegate feedDidRemove:removedFeed];
+    });
+    
+    return removedFeed;
 }
 
 @end

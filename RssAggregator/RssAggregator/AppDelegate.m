@@ -19,7 +19,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    UITabBarController *tabBarController = [UITabBarController tabBarControllerWithDataSource:[FeedsLocalDataSource new]];
+    UITabBarController *tabBarController = [UITabBarController tabBarControllerWithDataSource:[FeedsLocalDataSource hardcodedFeeds]];
     self.window.rootViewController = tabBarController;
     
     return YES;
