@@ -49,4 +49,9 @@
     return (AddFeedViewController *) [[StoryboardFabric feedSources] instantiateViewControllerWithIdentifier:@"addFeedScreenId"];
 }
 
+
++ (FullArticleViewController *)fullArticleController {
+    return (FullArticleViewController *) [[StoryboardFabric newsList] instantiateViewControllerWithIdentifier:@"fullArticleScreenId"];
+}
+
 @end

@@ -7,4 +7,5 @@ target 'RssAggregator' do
 
   # Pods for RssAggregator
   pod 'MWFeedParser'
+  pod 'SDWebImage', '~>3.8'
 end

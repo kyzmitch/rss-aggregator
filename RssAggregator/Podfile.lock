@@ -8,13 +8,18 @@ PODS:
     - MWFeedParser/NSString+HTML
   - MWFeedParser/NSDate+InternetDateTime (1.0.1)
   - MWFeedParser/NSString+HTML (1.0.1)
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
 
 DEPENDENCIES:
   - MWFeedParser
+  - SDWebImage (~> 3.8)
 
 SPEC CHECKSUMS:
   MWFeedParser: 2cf646014c1baf6ad1b08c480b40a08180079247
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
 
-PODFILE CHECKSUM: c7bf50a82b52d92536cefe8f1a9fe1cafccb5590
+PODFILE CHECKSUM: 23ad1e03a08c82dd1a9476f58f6afa98547749d1
 
 COCOAPODS: 1.2.1

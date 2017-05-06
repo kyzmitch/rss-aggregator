@@ -31,8 +31,6 @@
         MWFeedItem *item = article;
         cell.textLabel.text = item.title;
         cell.textLabel.numberOfLines = 0;
-        cell.detailTextLabel.text = item.content;
-        cell.detailTextLabel.numberOfLines = 0;
     }
     
     return cell;

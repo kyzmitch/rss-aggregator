@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@class NewsListViewController, FeedSourcesViewController, AddFeedViewController;
+@class NewsListViewController, FeedSourcesViewController, AddFeedViewController, FullArticleViewController;
 
 @interface UIStoryboard (Custom)
 
 + (NewsListViewController *)newsListController;
 + (FeedSourcesViewController *)feedSourcesController;
 + (AddFeedViewController *)addFeedController;
++ (FullArticleViewController *)fullArticleController;
 
 @end

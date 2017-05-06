@@ -9,12 +9,16 @@
 #import "NewsListViewController.h"
 #import "NewsListPresenterImpl.h"
 #import "NewsListTableDataSource.h"
+#import "NewsListTableDelegate.h"
+#import "FullArticleViewController.h"
+#import "UIStoryboard+Custom.h"
 
-@interface NewsListViewController () <FeedsDelegate, NewsListView>
+@interface NewsListViewController () <FeedsDelegate, NewsListView, NewsListBackDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *newsTableView;
 @property (strong, nonatomic) NewsListTableDataSource *tableDataSource;
 @property (strong, nonatomic) NewsListPresenterImpl *presenter;
+@property (strong, nonatomic) NewsListTableDelegate *tableDelegate;
 
 @end
 
@@ -29,6 +33,8 @@
     self.title = @"News";
     _tableDataSource = [NewsListTableDataSource new];
     _presenter = [[NewsListPresenterImpl alloc] initWithView:self];
+    _tableDelegate = [NewsListTableDelegate new];
+    _tableDelegate.delegate = self;
     return self;
 }
 
@@ -38,6 +44,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.newsTableView.estimatedRowHeight = 80;
     self.newsTableView.dataSource = self.tableDataSource;
+    self.newsTableView.delegate = self.tableDelegate;
 }
 
 #pragma mark - FeedInjectable
@@ -95,4 +102,18 @@
 - (void)hideProgress{
     [self.activityIndicator stopAnimating];
 }
+
+#pragma mark - NewsListBackDelegate
+
+- (void)articleDidSelectAtIndexPath:(NSIndexPath *)indexPath {
+    NSArray *keys = [self.tableDataSource.source allKeys];
+    NSString *key = [keys objectAtIndex:indexPath.section];
+    NSMutableArray *items = [self.tableDataSource.source objectForKey:key];
+    MWFeedItem *item = [items objectAtIndex:indexPath.row];
+    
+    FullArticleViewController *fullArticleCtrl = [UIStoryboard fullArticleController];
+    fullArticleCtrl.data = item;
+    [self.navigationController pushViewController:fullArticleCtrl animated:YES];
+}
+
 @end
