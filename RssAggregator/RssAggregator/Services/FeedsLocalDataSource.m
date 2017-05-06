@@ -62,4 +62,12 @@
     return removedFeed;
 }
 
+- (void)addSource:(NSString *)s {
+    // Will hardcode that it is added alwasy first
+    [self.array insertObject:s atIndex:0];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.delegate feedDidAdd:s];
+    });
+}
+
 @end

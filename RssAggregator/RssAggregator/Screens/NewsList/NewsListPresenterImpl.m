@@ -17,6 +17,9 @@
 @property (strong, nonatomic) dispatch_group_t group;
 @property (strong, nonatomic) NSMutableDictionary<NSString *, NSMutableArray<MWFeedItem *> *> *rssItems;
 
+@property (strong, nonatomic) NSString *newlyAddedSource;
+@property (strong, nonatomic) MWFeedParser *newlyAddedSourceFeedParser;
+
 @end
 
 @implementation NewsListPresenterImpl
@@ -74,10 +77,30 @@
         if (self) {
             NSMutableDictionary *items = [[NSMutableDictionary alloc] initWithDictionary:self.rssItems copyItems:NO];
             typeof(self.newsListView) view = self.newsListView;
-            [view feedItemsLoaded:items];
-            [view hideProgress];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [view feedItemsLoaded:items];
+                [view hideProgress];
+            });
         }
     });
+}
+
+
+- (void)fetchItemsForOneSource:(NSString *)source {
+    [self.newsListView showProgress];
+    [self.rssItems setObject:[NSMutableArray new] forKey:source];
+    
+    // With that RSS framework I can't run it on background queue
+    // only on main queue
+    NSURL *feedURL = [NSURL URLWithString:source];
+    MWFeedParser *feedParser = [[MWFeedParser alloc] initWithFeedURL:feedURL];
+    feedParser.delegate = self;
+    feedParser.feedParseType = ParseTypeFull;
+    feedParser.connectionType = ConnectionTypeAsynchronously;
+    self.newlyAddedSource = source;
+    self.newlyAddedSourceFeedParser = feedParser;
+    [feedParser parse];
+
 }
 
 #pragma mark - MWFeedParserDelegate
@@ -88,11 +111,34 @@
 }
 
 - (void)feedParserDidFinish:(MWFeedParser *)parser {
-    dispatch_group_leave(self.group);
+    if (self.newlyAddedSource == nil) {
+        dispatch_group_leave(self.group);
+    }
+    else {
+        self.newlyAddedSource = nil;
+        self.newlyAddedSourceFeedParser = nil;
+        NSMutableArray *items = [self.rssItems objectForKey:parser.url.absoluteString];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self.newsListView hideProgress];
+            [self.newsListView feedItemsLoaded:items :parser.url.absoluteString];
+        });
+    }
 }
 
 - (void)feedParser:(MWFeedParser *)parser didFailWithError:(NSError *)error {
-    dispatch_group_leave(self.group);
+    if (self.newlyAddedSource == nil) {
+        dispatch_group_leave(self.group);
+    }
+    else {
+        self.newlyAddedSource = nil;
+        self.newlyAddedSourceFeedParser = nil;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.newsListView hideProgress];
+        });
+        
+    }
 }
 
 @end

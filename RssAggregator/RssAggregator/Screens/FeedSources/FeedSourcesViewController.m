@@ -10,13 +10,16 @@
 #import "FeedSourcesTableViewDataSource.h"
 #import "FeedSourcesPresenterImpl.h"
 #import "FeedSourcesTableDelegate.h"
+#import "AddFeedViewController.h"
+#import "UIStoryboard+Custom.h"
 
-@interface FeedSourcesViewController () <FeedSourcesView, FeedDelegateBackProtocol>
+@interface FeedSourcesViewController () <FeedSourcesView, FeedDelegateBackProtocol, FeedAddBackProtocol>
 
 @property (weak, nonatomic) IBOutlet UITableView *feedSources;
 @property (strong, nonatomic) id<FeedSourcesPresenter> presenter;
 @property (strong, nonatomic) FeedSourcesTableViewDataSource *dataSource;
 @property (strong, nonatomic) FeedSourcesTableDelegate *tableDelegate;
+@property (strong, nonatomic) id<FeedDataSourceInterface> feedSource; // just for add feed controller
 
 @end
 
@@ -37,7 +40,8 @@
 }
 
 - (void)inject:(id<FeedDataSourceInterface>)feedDataSourceInterface {
-    _presenter = [[FeedSourcesPresenterImpl alloc] initWithView:self source:feedDataSourceInterface];
+    self.presenter = [[FeedSourcesPresenterImpl alloc] initWithView:self source:feedDataSourceInterface];
+    self.feedSource = feedDataSourceInterface;
 }
 
 - (void)viewDidLoad {
@@ -54,7 +58,9 @@
 }
 
 - (void)addSource {
-    
+    AddFeedViewController *addFeedCtrl = [UIStoryboard addFeedController];
+    addFeedCtrl.delegate = self;
+    [self.navigationController pushViewController:addFeedCtrl animated:YES];
 }
 
 #pragma mark - FeedSourcesView
@@ -76,6 +82,12 @@
     [self.feedSources deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
+- (void)feedAdded:(NSString *)feedAddress {
+    [self.dataSource.dataSource insertObject:feedAddress atIndex:0];
+    NSIndexPath *path = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.feedSources insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationFade];
+}
+
 #pragma mark - Common View
 
 - (void)showProgress{
@@ -91,6 +103,12 @@
 
 - (void)feedDidRemoveAtIndexPath:(NSIndexPath *)index {
     [self.presenter removeFeedSourceAtIndex:index.row];
+}
+
+#pragma mark - FeedAddBackProtocol
+
+- (void)feedDidCreate:(NSString *)feedAddress {
+    [self.presenter addFeed:feedAddress];
 }
 
 @end

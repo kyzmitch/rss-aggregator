@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="TWV-Em-vBA">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -19,18 +19,18 @@
                         <viewControllerLayoutGuide type="bottom" id="fMI-2x-LnV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TcL-WU-kos">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RIx-Gg-Ftu">
-                                <rect key="frame" x="16" y="20" width="343" height="647"/>
+                                <rect key="frame" x="16" y="20" width="288" height="548"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="kFeedSourceCellId" id="KRg-mk-ble">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="288" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KRg-mk-ble" id="DeR-Mo-ee8">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="288" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -52,6 +52,68 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O8g-R9-O1p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="39" y="100"/>
+        </scene>
+        <!--Add Feed View Controller-->
+        <scene sceneID="nzB-CI-tby">
+            <objects>
+                <viewController storyboardIdentifier="addFeedScreenId" useStoryboardIdentifierAsRestorationIdentifier="YES" id="W1R-2c-AOs" customClass="AddFeedViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6CB-JJ-rBz"/>
+                        <viewControllerLayoutGuide type="bottom" id="RxR-Yq-byF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bnR-J9-YsO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feed name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UFN-DZ-3sI">
+                                <rect key="frame" x="36" y="40" width="248" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="rss feed title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O7v-qi-mK4">
+                                <rect key="frame" x="36" y="67" width="248" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="rss http address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wuq-0n-dfs">
+                                <rect key="frame" x="36" y="164" width="248" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feed http address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fNp-u2-eZe">
+                                <rect key="frame" x="36" y="137" width="248" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="O7v-qi-mK4" secondAttribute="trailing" constant="20" id="3pK-jg-Pgy"/>
+                            <constraint firstItem="UFN-DZ-3sI" firstAttribute="top" secondItem="6CB-JJ-rBz" secondAttribute="bottom" constant="20" id="7uK-eT-YaT"/>
+                            <constraint firstItem="O7v-qi-mK4" firstAttribute="leading" secondItem="bnR-J9-YsO" secondAttribute="leadingMargin" constant="20" id="E6z-ge-UgU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Wuq-0n-dfs" secondAttribute="trailing" constant="20" id="F67-Gh-ENY"/>
+                            <constraint firstItem="UFN-DZ-3sI" firstAttribute="leading" secondItem="bnR-J9-YsO" secondAttribute="leadingMargin" constant="20" id="Fqx-FA-Hsb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="UFN-DZ-3sI" secondAttribute="trailing" constant="20" id="K6G-zb-7jT"/>
+                            <constraint firstItem="fNp-u2-eZe" firstAttribute="leading" secondItem="bnR-J9-YsO" secondAttribute="leadingMargin" constant="20" id="PYu-J6-LqS"/>
+                            <constraint firstItem="Wuq-0n-dfs" firstAttribute="top" secondItem="fNp-u2-eZe" secondAttribute="bottom" constant="6" id="SyQ-BD-kRT"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fNp-u2-eZe" secondAttribute="trailing" constant="20" id="UHl-kq-OJc"/>
+                            <constraint firstItem="Wuq-0n-dfs" firstAttribute="leading" secondItem="bnR-J9-YsO" secondAttribute="leadingMargin" constant="20" id="Z4m-Nq-unQ"/>
+                            <constraint firstItem="O7v-qi-mK4" firstAttribute="top" secondItem="UFN-DZ-3sI" secondAttribute="bottom" constant="6" id="ZHw-ab-x8S"/>
+                            <constraint firstItem="fNp-u2-eZe" firstAttribute="top" secondItem="O7v-qi-mK4" secondAttribute="bottom" constant="40" id="v71-wz-rqM"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="feedAddressField" destination="Wuq-0n-dfs" id="wD1-SA-gJS"/>
+                        <outlet property="feedNameField" destination="O7v-qi-mK4" id="0F1-qg-ZTF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uSF-LV-cgm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="772" y="98.50074962518741"/>
         </scene>
     </scenes>
 </document>

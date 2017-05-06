@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		36BBA00CBBB29BE0F8246CED /* libPods-RssAggregator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FD22C9C58A7079F4ECE2FDF /* libPods-RssAggregator.a */; };
+		843AC8301EBDDFB7007750BF /* AddFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843AC82F1EBDDFB7007750BF /* AddFeedViewController.m */; };
 		84F754BA1EBBB2EE0043F0DB /* FeedsLocalDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F754B91EBBB2EE0043F0DB /* FeedsLocalDataSource.m */; };
 		84F754BD1EBBC1AE0043F0DB /* NewsListTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F754BC1EBBC1AE0043F0DB /* NewsListTableDataSource.m */; };
 		84F754C31EBCFE0F0043F0DB /* NewsListPresenterImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F754C21EBCFE0F0043F0DB /* NewsListPresenterImpl.m */; };
@@ -30,6 +31,8 @@
 
 /* Begin PBXFileReference section */
 		2FD22C9C58A7079F4ECE2FDF /* libPods-RssAggregator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RssAggregator.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		843AC82E1EBDDFB7007750BF /* AddFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddFeedViewController.h; path = Screens/AddFeed/AddFeedViewController.h; sourceTree = "<group>"; };
+		843AC82F1EBDDFB7007750BF /* AddFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddFeedViewController.m; path = Screens/AddFeed/AddFeedViewController.m; sourceTree = "<group>"; };
 		84F754B71EBBB2EE0043F0DB /* FeedDataSourceInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedDataSourceInterface.h; path = Services/FeedDataSourceInterface.h; sourceTree = "<group>"; };
 		84F754B81EBBB2EE0043F0DB /* FeedsLocalDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedsLocalDataSource.h; path = Services/FeedsLocalDataSource.h; sourceTree = "<group>"; };
 		84F754B91EBBB2EE0043F0DB /* FeedsLocalDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedsLocalDataSource.m; path = Services/FeedsLocalDataSource.m; sourceTree = "<group>"; };
@@ -90,6 +93,15 @@
 				D306A750A81E462DE8F457D9 /* Pods-RssAggregator.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		843AC82D1EBDDF76007750BF /* AddFeed */ = {
+			isa = PBXGroup;
+			children = (
+				843AC82E1EBDDFB7007750BF /* AddFeedViewController.h */,
+				843AC82F1EBDDFB7007750BF /* AddFeedViewController.m */,
+			);
+			name = AddFeed;
 			sourceTree = "<group>";
 		};
 		84F754B61EBBB2590043F0DB /* Services */ = {
@@ -155,6 +167,7 @@
 		C7C7184F1EBB8EF700E7874A /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				843AC82D1EBDDF76007750BF /* AddFeed */,
 				C7C718511EBB8F0C00E7874A /* NewsList */,
 				C7C718501EBB8F0500E7874A /* FeedSources */,
 				C7C7185A1EBB8FAE00E7874A /* BaseViewController.h */,
@@ -336,6 +349,7 @@
 				C7C7183D1EBB8ED600E7874A /* AppDelegate.m in Sources */,
 				C7C7185F1EBB8FD100E7874A /* FeedSourcesViewController.m in Sources */,
 				84F754C91EBDB66A0043F0DB /* FeedSourcesTableDelegate.m in Sources */,
+				843AC8301EBDDFB7007750BF /* AddFeedViewController.m in Sources */,
 				C7C7186E1EBB98FA00E7874A /* FeedSourcesTableViewDataSource.m in Sources */,
 				84F754BD1EBBC1AE0043F0DB /* NewsListTableDataSource.m in Sources */,
 				C7C718681EBB90B200E7874A /* UITabBarController+Custom.m in Sources */,

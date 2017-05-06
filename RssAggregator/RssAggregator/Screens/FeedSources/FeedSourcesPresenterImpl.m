@@ -51,4 +51,16 @@
     });
 }
 
+
+- (void)addFeed:(NSString *)feedAddress {
+    [self.feedSourcesView showProgress];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self.feedsDataSource addSource:feedAddress];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.feedSourcesView feedAdded:feedAddress];
+            [self.feedSourcesView hideProgress];
+        });
+    });
+}
+
 @end

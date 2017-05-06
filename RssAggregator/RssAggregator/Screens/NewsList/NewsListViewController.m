@@ -60,11 +60,25 @@
     [self.newsTableView deleteSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
 }
 
+
+- (void)feedDidAdd:(NSString *)value {
+    [self.presenter fetchItemsForOneSource:value];
+}
+
 #pragma mark - NewsListView
 
 - (void)feedItemsLoaded:(NSMutableDictionary<NSString *, NSMutableArray *> *)itemsDictionary {
     self.tableDataSource.source = itemsDictionary;
     [self.newsTableView reloadData];
+}
+
+- (void)feedItemsLoaded:(NSMutableArray *)forSource :(NSString *)sourceAddess {
+    [self.tableDataSource.source setObject:forSource forKey:sourceAddess];
+    NSArray *keys = [self.tableDataSource.source allKeys];
+    NSUInteger ix = [keys indexOfObject:sourceAddess];
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:ix];
+    
+    [self.newsTableView insertSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void)failedLoadFeedItems {

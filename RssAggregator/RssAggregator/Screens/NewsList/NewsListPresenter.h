@@ -12,6 +12,7 @@
 @protocol NewsListView <CommonViewInterface>
 
 - (void)feedItemsLoaded:(NSMutableDictionary<NSString *, NSMutableArray *> *)itemsDictionary;
+- (void)feedItemsLoaded:(NSMutableArray *) forSource:(NSString *)sourceAddess;
 - (void)failedLoadFeedItems;
 
 @end
@@ -19,5 +20,6 @@
 @protocol NewsListPresenter <NSObject>
 
 - (void)fetchItemsForFeedSources:(NSArray<NSString *> *)sources;
+- (void)fetchItemsForOneSource:(NSString *)source;
 
 @end

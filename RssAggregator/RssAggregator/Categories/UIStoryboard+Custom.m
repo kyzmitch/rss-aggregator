@@ -45,4 +45,8 @@
     return (FeedSourcesViewController *) [[StoryboardFabric feedSources] instantiateViewControllerWithIdentifier:@"feedSourcesScreenId"];
 }
 
++ (AddFeedViewController *)addFeedController {
+    return (AddFeedViewController *) [[StoryboardFabric feedSources] instantiateViewControllerWithIdentifier:@"addFeedScreenId"];
+}
+
 @end
