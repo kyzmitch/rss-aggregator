@@ -18,7 +18,7 @@
 @property (strong, nonatomic) dispatch_group_t group;
 @property (strong, nonatomic) NSMutableDictionary<Feed *, NSMutableArray<MWFeedItem *> *> *rssItems;
 
-@property (strong, nonatomic) NSString *newlyAddedSource;
+@property (strong, nonatomic) Feed *newlyAddedSource;
 @property (strong, nonatomic) MWFeedParser *newlyAddedSourceFeedParser;
 
 @end
@@ -95,13 +95,13 @@
 }
 
 
-- (void)fetchItemsForOneSource:(NSString *)source {
+- (void)fetchItemsForOneSource:(Feed *)source {
     [self.newsListView showProgress];
     [self.rssItems setObject:[NSMutableArray new] forKey:source];
     
     // With that RSS framework I can't run it on background queue
     // only on main queue
-    NSURL *feedURL = [NSURL URLWithString:source];
+    NSURL *feedURL = [NSURL URLWithString:source.address];
     MWFeedParser *feedParser = [[MWFeedParser alloc] initWithFeedURL:feedURL];
     feedParser.delegate = self;
     feedParser.feedParseType = ParseTypeFull;
@@ -164,6 +164,18 @@
         self.newlyAddedSourceFeedParser = nil;
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.newsListView hideProgress];
+            
+            // Need to add at least empty section to table
+            NSArray *keys = [self.rssItems allKeys];
+            for (Feed *key in keys) {
+                if ([key.address isEqualToString:parser.url.absoluteString]) {
+                    
+                    NSMutableArray *items = [self.rssItems objectForKey:key];
+                    [self.newsListView feedItemsLoaded:items forSource:key];
+                    break;
+                }
+            }
+            
         });
         
     }
