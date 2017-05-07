@@ -39,4 +39,20 @@ static NSString * const kFeedAddressKey = @"kFeedAddressKey";
     return feed;
 }
 
+- (BOOL)isEqualFeed:(Feed *)feed {
+    return [self.address isEqualToString:feed.address];
+}
+
+- (BOOL)isEqual:(id)object {
+    if (object == nil || [object isKindOfClass:[self class]] == NO) {
+        return NO;
+    }
+    
+    return [self isEqualFeed:object];
+}
+
+- (NSUInteger)hash {
+    return [self.address hash] ^ [self.title hash];
+}
+
 @end
