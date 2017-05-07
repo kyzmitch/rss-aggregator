@@ -13,10 +13,13 @@
 @protocol FeedAddBackProtocol <NSObject>
 
 - (void)feedDidCreate:(Feed *)feedAddress;
+- (void)feedDidUpdate:(Feed *)feed withNewFeed:(Feed *)newFeed;
 
 @end
 
 @interface AddFeedViewController : BaseViewController
 
 @property (weak, nonatomic) id<FeedAddBackProtocol> delegate;
+@property (copy, nonatomic) Feed *feedForUpdate;
+
 @end

@@ -12,6 +12,7 @@
 @protocol FeedDelegateBackProtocol <NSObject>
 
 - (void)feedDidRemoveAtIndexPath:(NSIndexPath *)index;
+- (void)feedDidEditPressedAtIndexPath:(NSIndexPath *)index;
 
 @end
 

@@ -44,6 +44,9 @@ static NSString * const kFeedAddressKey = @"kFeedAddressKey";
 }
 
 - (BOOL)isEqual:(id)object {
+    
+    // don't add check by pointer/reference
+    
     if (object == nil || [object isKindOfClass:[self class]] == NO) {
         return NO;
     }

@@ -15,6 +15,9 @@
 
 - (void)feedItemsLoaded:(NSMutableDictionary<Feed *, NSMutableArray *> *)itemsDictionary;
 - (void)feedItemsLoaded:(NSMutableArray *)items forSource:(Feed *)sourceAddess;
+- (void)feedItemsUpdated:(NSMutableArray *)items forSource:(Feed *)source;
+- (void)feedRemoved:(Feed *)feed fromIndex:(NSUInteger)index;
+- (void)feedTitleUpdated:(Feed *)feed forIndex:(NSUInteger)index;
 - (void)failedLoadFeedItems;
 
 @end
@@ -23,5 +26,6 @@
 
 - (void)fetchItemsForFeedSources:(NSArray<Feed *> *)sources;
 - (void)fetchItemsForOneSource:(Feed *)source;
+- (void)updateItemsForIndex:(NSUInteger)index withSource:(Feed *)feed;
 
 @end

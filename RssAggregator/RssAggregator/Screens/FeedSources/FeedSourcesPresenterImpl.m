@@ -63,4 +63,20 @@
     });
 }
 
+- (void)updateFeed:(Feed *)feed withNewFeed:(Feed *)newFeed {
+    [self.feedSourcesView showProgress];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSUInteger ix = [self.feedsDataSource updateSource:feed withNewSource:newFeed];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (ix != NSNotFound) {
+                [self.feedSourcesView feedUpdated:newFeed atIndex:ix];
+            }
+            
+            [self.feedSourcesView hideProgress];
+        });
+        
+    });
+}
+
 @end

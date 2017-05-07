@@ -30,7 +30,7 @@
 @optional
 - (void)addSource:(Feed *)s;
 - (Feed *)removeSourceAtIndex:(NSUInteger)index;
-- (void)updateSourceAtIndex:(NSUInteger)index withSource:(Feed *)s;
+- (NSUInteger)updateSource:(Feed *)s withNewSource:(Feed *)newSource;
 
 @end
 

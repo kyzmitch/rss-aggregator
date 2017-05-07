@@ -90,4 +90,20 @@
     });
 }
 
+- (NSUInteger)updateSource:(Feed *)s withNewSource:(Feed *)newSource {
+    NSUInteger ix = [self.array indexOfObject:s];
+    if (ix == NSNotFound) {
+        return NSNotFound;
+    }
+    
+    [self.array replaceObjectAtIndex:ix withObject:newSource];
+    [[NSUserDefaults standardUserDefaults] rewriteFeeds:self.array];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.delegate feedDidUpdatedAtIndex:ix withSource:newSource];
+    });
+    
+    return ix;
+}
+
 @end

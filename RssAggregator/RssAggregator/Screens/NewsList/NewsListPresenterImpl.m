@@ -11,6 +11,11 @@
 #import "NSString+Custom.h"
 #import "Feed.h"
 
+typedef NS_ENUM(NSUInteger, LoadingType) {
+    ItemsLoadingForAddedSource,
+    ItemsLoadingForUpdatedSource
+};
+
 @interface NewsListPresenterImpl () <MWFeedParserDelegate>
 
 @property (weak, nonatomic) id<NewsListView> newsListView;
@@ -18,8 +23,10 @@
 @property (strong, nonatomic) dispatch_group_t group;
 @property (strong, nonatomic) NSMutableDictionary<Feed *, NSMutableArray<MWFeedItem *> *> *rssItems;
 
-@property (strong, nonatomic) Feed *newlyAddedSource;
+@property (strong, nonatomic) Feed *addedSource;
+@property (strong, nonatomic) Feed *updatedSource;
 @property (strong, nonatomic) MWFeedParser *newlyAddedSourceFeedParser;
+@property (strong, nonatomic) MWFeedParser *updatedSourceFeedParser;
 
 @end
 
@@ -101,15 +108,51 @@
     
     // With that RSS framework I can't run it on background queue
     // only on main queue
-    NSURL *feedURL = [NSURL URLWithString:source.address];
+    [self loadItemsForSource:source typeOfLoad:ItemsLoadingForAddedSource];
+
+}
+
+- (void)updateItemsForIndex:(NSUInteger)index withSource:(Feed *)feed {
+    typeof(self.newsListView) view = self.newsListView;
+    [view showProgress];
+    NSArray *keys = [self.rssItems allKeys];
+    Feed *key = [keys objectAtIndex:index];
+    
+    if ([key.address isEqualToString:feed.address]) {
+        // just need to update title
+        key.title = feed.title;
+        [view feedTitleUpdated:key forIndex:index];
+        [view hideProgress];
+    }
+    else {
+        // clear
+        [self.rssItems removeObjectForKey:key];
+        [view feedRemoved:key fromIndex:index];
+        
+        // create new one
+        [self.rssItems setObject:[NSMutableArray new] forKey:feed];
+        [self loadItemsForSource:feed typeOfLoad:ItemsLoadingForUpdatedSource];
+    }
+}
+
+- (void)loadItemsForSource:(Feed *)feed typeOfLoad:(LoadingType)type {
+    NSURL *feedURL = [NSURL URLWithString:feed.address];
     MWFeedParser *feedParser = [[MWFeedParser alloc] initWithFeedURL:feedURL];
     feedParser.delegate = self;
     feedParser.feedParseType = ParseTypeFull;
     feedParser.connectionType = ConnectionTypeAsynchronously;
-    self.newlyAddedSource = source;
-    self.newlyAddedSourceFeedParser = feedParser;
+    
+    if (type == ItemsLoadingForAddedSource) {
+        self.addedSource = feed;
+        self.newlyAddedSourceFeedParser = feedParser;
+    }
+    else {
+        self.updatedSource = feed;
+        self.updatedSourceFeedParser = feedParser;
+    }
+    
+    
     [feedParser parse];
-
 }
 
 #pragma mark - MWFeedParserDelegate
@@ -129,11 +172,14 @@
 - (void)feedParserDidFinish:(MWFeedParser *)parser {
     NSLog(@"%@: finished parsing source %@", [self class], parser.url.absoluteString);
     
-    if (self.newlyAddedSource == nil) {
+    // Using state variables to check for which request this response belongs to
+    // RSS framework doesn't support blocks, only delegate
+    
+    if (self.addedSource == nil && self.updatedSource == nil) {
         dispatch_group_leave(self.group);
     }
-    else {
-        self.newlyAddedSource = nil;
+    else if (self.addedSource) {
+        self.addedSource = nil;
         self.newlyAddedSourceFeedParser = nil;
         
         NSArray *keys = [self.rssItems allKeys];
@@ -151,16 +197,35 @@
             }
         }
     }
+    else if (self.updatedSource) {
+        self.updatedSource = nil;
+        self.updatedSourceFeedParser = nil;
+        
+        NSArray *keys = [self.rssItems allKeys];
+        for (Feed *key in keys) {
+            if ([key.address isEqualToString:parser.url.absoluteString]) {
+                
+                NSMutableArray *items = [self.rssItems objectForKey:key];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    [self.newsListView hideProgress];
+                    [self.newsListView feedItemsUpdated:items forSource:key];
+                });
+                break;
+            }
+        }
+    }
 }
 
 - (void)feedParser:(MWFeedParser *)parser didFailWithError:(NSError *)error {
     NSLog(@"%@: failed to parse feed %@ with error %@", [self class], parser.url.absoluteString, [error description]);
     
-    if (self.newlyAddedSource == nil) {
+    if (self.addedSource == nil && self.updatedSource == nil) {
         dispatch_group_leave(self.group);
     }
-    else {
-        self.newlyAddedSource = nil;
+    else if (self.addedSource) {
+        self.addedSource = nil;
         self.newlyAddedSourceFeedParser = nil;
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.newsListView hideProgress];
@@ -178,6 +243,14 @@
             
         });
         
+    }
+    else if (self.updatedSource) {
+        self.updatedSource = nil;
+        self.updatedSourceFeedParser = nil;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.newsListView hideProgress];
+        });
     }
 }
 

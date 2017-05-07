@@ -19,7 +19,6 @@
 @property (strong, nonatomic) id<FeedSourcesPresenter> presenter;
 @property (strong, nonatomic) FeedSourcesTableViewDataSource *dataSource;
 @property (strong, nonatomic) FeedSourcesTableDelegate *tableDelegate;
-@property (strong, nonatomic) id<FeedDataSourceInterface> feedSource; // just for add feed controller
 
 @end
 
@@ -41,7 +40,6 @@
 
 - (void)inject:(id<FeedDataSourceInterface>)feedDataSourceInterface {
     self.presenter = [[FeedSourcesPresenterImpl alloc] initWithView:self source:feedDataSourceInterface];
-    self.feedSource = feedDataSourceInterface;
 }
 
 - (void)viewDidLoad {
@@ -88,6 +86,13 @@
     [self.feedSources insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationFade];
 }
 
+- (void)feedUpdated:(Feed *)feed atIndex:(NSUInteger)ix {
+    [self.dataSource.dataSource replaceObjectAtIndex:ix withObject:feed];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:ix inSection:0];
+    [self.feedSources reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+}
+
 #pragma mark - Common View
 
 - (void)showProgress{
@@ -102,13 +107,32 @@
 #pragma mark - BackDelegate
 
 - (void)feedDidRemoveAtIndexPath:(NSIndexPath *)index {
-    [self.presenter removeFeedSourceAtIndex:index.row];
+    [self showDecisionAlertWithMessage:@"Are you sure you want to remove it?" okHandler:^{
+        [self.presenter removeFeedSourceAtIndex:index.row];
+    }];
+}
+
+- (void)feedDidEditPressedAtIndexPath:(NSIndexPath *)index {
+    Feed *feedToUpdate = [self.dataSource.dataSource objectAtIndex:index.row];
+    if (feedToUpdate == nil) {
+        return;
+    }
+    
+    AddFeedViewController *addFeedCtrl = [UIStoryboard addFeedController];
+    addFeedCtrl.delegate = self;
+    addFeedCtrl.feedForUpdate = feedToUpdate;
+    
+    [self.navigationController pushViewController:addFeedCtrl animated:YES];
 }
 
 #pragma mark - FeedAddBackProtocol
 
 - (void)feedDidCreate:(Feed *)feedAddress {
     [self.presenter addFeed:feedAddress];
+}
+
+- (void)feedDidUpdate:(Feed *)feed withNewFeed:(Feed *)newFeed {
+    [self.presenter updateFeed:feed withNewFeed:newFeed];
 }
 
 @end

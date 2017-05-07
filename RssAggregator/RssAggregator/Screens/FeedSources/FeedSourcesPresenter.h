@@ -18,6 +18,7 @@
 - (void)failedLoadFeedSources;
 - (void)feedRemoved:(Feed *)feed atIndex:(NSUInteger)ix;
 - (void)feedAdded:(Feed *)feedAddress;
+- (void)feedUpdated:(Feed *)feed atIndex:(NSUInteger)ix;
 
 @end
 
@@ -27,5 +28,6 @@
 - (void)loadFeedSources;
 - (void)removeFeedSourceAtIndex:(NSUInteger)ix;
 - (void)addFeed:(Feed *)feedAddress;
+- (void)updateFeed:(Feed *)feed withNewFeed:(Feed *)newFeed;
 
 @end
