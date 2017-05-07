@@ -77,6 +77,14 @@
         
         if (self) {
             NSMutableDictionary *items = [[NSMutableDictionary alloc] initWithDictionary:self.rssItems copyItems:NO];
+            
+            // Log
+            NSArray *keys = [items allKeys];
+            for (Feed *key in keys) {
+                NSArray *articles = [items objectForKey:key];
+                NSLog(@"%@: loaded %lu articles for feed %@", [self class], (unsigned long)articles.count, key.address);
+            }
+            
             typeof(self.newsListView) view = self.newsListView;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [view feedItemsLoaded:items];
@@ -119,6 +127,8 @@
 }
 
 - (void)feedParserDidFinish:(MWFeedParser *)parser {
+    NSLog(@"%@: finished parsing source %@", [self class], parser.url.absoluteString);
+    
     if (self.newlyAddedSource == nil) {
         dispatch_group_leave(self.group);
     }
@@ -144,6 +154,8 @@
 }
 
 - (void)feedParser:(MWFeedParser *)parser didFailWithError:(NSError *)error {
+    NSLog(@"%@: failed to parse feed %@ with error %@", [self class], parser.url.absoluteString, [error description]);
+    
     if (self.newlyAddedSource == nil) {
         dispatch_group_leave(self.group);
     }
