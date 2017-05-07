@@ -17,6 +17,7 @@
 		84F754C31EBCFE0F0043F0DB /* NewsListPresenterImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F754C21EBCFE0F0043F0DB /* NewsListPresenterImpl.m */; };
 		84F754C61EBD11A10043F0DB /* NSString+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F754C51EBD11A10043F0DB /* NSString+Custom.m */; };
 		84F754C91EBDB66A0043F0DB /* FeedSourcesTableDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F754C81EBDB66A0043F0DB /* FeedSourcesTableDelegate.m */; };
+		C718A5BD1EBEF5FA0057E14C /* NSUserDefaults+Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = C718A5BC1EBEF5FA0057E14C /* NSUserDefaults+Feed.m */; };
 		C7C7183A1EBB8ED600E7874A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C718391EBB8ED600E7874A /* main.m */; };
 		C7C7183D1EBB8ED600E7874A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C7183C1EBB8ED600E7874A /* AppDelegate.m */; };
 		C7C718451EBB8ED600E7874A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7C718441EBB8ED600E7874A /* Assets.xcassets */; };
@@ -55,6 +56,8 @@
 		84F754C71EBDB66A0043F0DB /* FeedSourcesTableDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedSourcesTableDelegate.h; path = Screens/FeedSources/FeedSourcesTableDelegate.h; sourceTree = "<group>"; };
 		84F754C81EBDB66A0043F0DB /* FeedSourcesTableDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedSourcesTableDelegate.m; path = Screens/FeedSources/FeedSourcesTableDelegate.m; sourceTree = "<group>"; };
 		C70254261E9ADA521406D8F4 /* Pods-RssAggregator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RssAggregator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RssAggregator/Pods-RssAggregator.debug.xcconfig"; sourceTree = "<group>"; };
+		C718A5BB1EBEF5FA0057E14C /* NSUserDefaults+Feed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSUserDefaults+Feed.h"; path = "Categories/NSUserDefaults+Feed.h"; sourceTree = "<group>"; };
+		C718A5BC1EBEF5FA0057E14C /* NSUserDefaults+Feed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSUserDefaults+Feed.m"; path = "Categories/NSUserDefaults+Feed.m"; sourceTree = "<group>"; };
 		C7C718351EBB8ED600E7874A /* RssAggregator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RssAggregator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7C718391EBB8ED600E7874A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C7C7183B1EBB8ED600E7874A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -241,6 +244,8 @@
 				C7C7186A1EBB910100E7874A /* UIStoryboard+Custom.m */,
 				84F754C41EBD11A10043F0DB /* NSString+Custom.h */,
 				84F754C51EBD11A10043F0DB /* NSString+Custom.m */,
+				C718A5BB1EBEF5FA0057E14C /* NSUserDefaults+Feed.h */,
+				C718A5BC1EBEF5FA0057E14C /* NSUserDefaults+Feed.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -359,7 +364,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -374,6 +379,7 @@
 				84F754C91EBDB66A0043F0DB /* FeedSourcesTableDelegate.m in Sources */,
 				843AC83C1EBEE1A1007750BF /* Feed.m in Sources */,
 				843AC8301EBDDFB7007750BF /* AddFeedViewController.m in Sources */,
+				C718A5BD1EBEF5FA0057E14C /* NSUserDefaults+Feed.m in Sources */,
 				C7C7186E1EBB98FA00E7874A /* FeedSourcesTableViewDataSource.m in Sources */,
 				84F754BD1EBBC1AE0043F0DB /* NewsListTableDataSource.m in Sources */,
 				C7C718681EBB90B200E7874A /* UITabBarController+Custom.m in Sources */,

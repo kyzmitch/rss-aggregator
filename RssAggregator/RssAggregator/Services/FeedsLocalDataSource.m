@@ -8,8 +8,7 @@
 
 #import "FeedsLocalDataSource.h"
 #import "Feed.h"
-
-static NSString * const kFeedsArrayKey = @"kFeedsArrayKey";
+#import "NSUserDefaults+Feed.h"
 
 @interface FeedsLocalDataSource ()
 
@@ -35,8 +34,7 @@ static NSString * const kFeedsArrayKey = @"kFeedsArrayKey";
 + (FeedsLocalDataSource *)hardcodedFeeds {
     FeedsLocalDataSource *collection = [FeedsLocalDataSource new];
     
-    NSUserDefaults *standard = [NSUserDefaults standardUserDefaults];
-    NSArray *cachedFeeds = [standard arrayForKey:kFeedsArrayKey];
+    NSArray<Feed *> *cachedFeeds = [[NSUserDefaults standardUserDefaults] readFeeds];
     if (cachedFeeds == nil) {
         // Several hardcoded resources
         Feed *lentaFeed = [Feed new];
@@ -72,8 +70,8 @@ static NSString * const kFeedsArrayKey = @"kFeedsArrayKey";
     }
     Feed *removedFeed = [self.array objectAtIndex:index];
     [self.array removeObjectAtIndex:index];
-    [[NSUserDefaults standardUserDefaults] setObject:self.array forKey:kFeedsArrayKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [[NSUserDefaults standardUserDefaults] rewriteFeeds:self.array];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.delegate feedDidRemove:removedFeed];
@@ -85,8 +83,7 @@ static NSString * const kFeedsArrayKey = @"kFeedsArrayKey";
 - (void)addSource:(Feed *)s {
     // Will hardcode that it is added alwasy first
     [self.array insertObject:s atIndex:0];
-    [[NSUserDefaults standardUserDefaults] setObject:self.array forKey:kFeedsArrayKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [[NSUserDefaults standardUserDefaults] rewriteFeeds:self.array];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.delegate feedDidAdd:s];
