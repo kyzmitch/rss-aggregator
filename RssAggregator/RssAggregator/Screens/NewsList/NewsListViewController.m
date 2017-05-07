@@ -12,6 +12,7 @@
 #import "NewsListTableDelegate.h"
 #import "FullArticleViewController.h"
 #import "UIStoryboard+Custom.h"
+#import "Feed.h" // only to fix warning about NSCopying
 
 @interface NewsListViewController () <FeedsDelegate, NewsListView, NewsListBackDelegate>
 
@@ -55,11 +56,11 @@
 
 #pragma mark - FeedsDelegate
 
-- (void)feedSourcesFetched:(NSArray<NSString *> *)sources {
+- (void)feedSourcesFetched:(NSArray<Feed *> *)sources {
     [self.presenter fetchItemsForFeedSources:sources];
 }
 
-- (void)feedDidRemove:(NSString *)feed {
+- (void)feedDidRemove:(Feed *)feed {
     NSUInteger ix = [[self.tableDataSource.source allKeys] indexOfObject:feed];
     [self.tableDataSource.source removeObjectForKey:feed];
     NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:ix];
@@ -68,19 +69,19 @@
 }
 
 
-- (void)feedDidAdd:(NSString *)value {
+- (void)feedDidAdd:(Feed *)value {
     [self.presenter fetchItemsForOneSource:value];
 }
 
 #pragma mark - NewsListView
 
-- (void)feedItemsLoaded:(NSMutableDictionary<NSString *, NSMutableArray *> *)itemsDictionary {
+- (void)feedItemsLoaded:(NSMutableDictionary<Feed *, NSMutableArray *> *)itemsDictionary {
     self.tableDataSource.source = itemsDictionary;
     [self.newsTableView reloadData];
 }
 
-- (void)feedItemsLoaded:(NSMutableArray *)forSource :(NSString *)sourceAddess {
-    [self.tableDataSource.source setObject:forSource forKey:sourceAddess];
+- (void)feedItemsLoaded:(NSMutableArray *)items forSource:(Feed *)sourceAddess {
+    [self.tableDataSource.source setObject:items forKey:sourceAddess];
     NSArray *keys = [self.tableDataSource.source allKeys];
     NSUInteger ix = [keys indexOfObject:sourceAddess];
     NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:ix];
@@ -107,7 +108,7 @@
 
 - (void)articleDidSelectAtIndexPath:(NSIndexPath *)indexPath {
     NSArray *keys = [self.tableDataSource.source allKeys];
-    NSString *key = [keys objectAtIndex:indexPath.section];
+    Feed *key = [keys objectAtIndex:indexPath.section];
     NSMutableArray *items = [self.tableDataSource.source objectForKey:key];
     MWFeedItem *item = [items objectAtIndex:indexPath.row];
     

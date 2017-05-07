@@ -7,12 +7,13 @@
 //
 
 #import "FeedsLocalDataSource.h"
+#import "Feed.h"
 
 static NSString * const kFeedsArrayKey = @"kFeedsArrayKey";
 
 @interface FeedsLocalDataSource ()
 
-@property (strong, nonatomic) NSMutableArray<NSString *> *array;
+@property (strong, nonatomic) NSMutableArray<Feed *> *array;
 
 @end
 
@@ -34,14 +35,20 @@ static NSString * const kFeedsArrayKey = @"kFeedsArrayKey";
 + (FeedsLocalDataSource *)hardcodedFeeds {
     FeedsLocalDataSource *collection = [FeedsLocalDataSource new];
     
-    
-    
     NSUserDefaults *standard = [NSUserDefaults standardUserDefaults];
     NSArray *cachedFeeds = [standard arrayForKey:kFeedsArrayKey];
     if (cachedFeeds == nil) {
         // Several hardcoded resources
-        [collection.array addObject:@"https://lenta.ru/rss/news"];
-        [collection.array addObject:@"https://3dnews.ru/news/rss/"];
+        Feed *lentaFeed = [Feed new];
+        lentaFeed.title = @"Lenta news";
+        lentaFeed.address = @"https://lenta.ru/rss/news";
+        [collection.array addObject:lentaFeed];
+        
+        
+        Feed *secondFeed = [Feed new];
+        secondFeed.title = @"3D news";
+        secondFeed.address = @"https://3dnews.ru/news/rss/";
+        [collection.array addObject:secondFeed];
     }
     else {
         [collection.array addObjectsFromArray:cachedFeeds];
@@ -50,7 +57,7 @@ static NSString * const kFeedsArrayKey = @"kFeedsArrayKey";
     return collection;
 }
 
-- (NSArray<NSString *> *)fetch {
+- (NSArray<Feed *> *)fetch {
     NSArray *copiedFeeds = [[NSArray alloc] initWithArray:self.array copyItems:NO];
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.delegate feedSourcesFetched:copiedFeeds];
@@ -59,12 +66,11 @@ static NSString * const kFeedsArrayKey = @"kFeedsArrayKey";
     return copiedFeeds;
 }
 
-
-- (NSString *)removeSourceAtIndex:(NSUInteger)index {
+- (Feed *)removeSourceAtIndex:(NSUInteger)index {
     if (index >= self.array.count) {
         return nil;
     }
-    NSString *removedFeed = [self.array objectAtIndex:index];
+    Feed *removedFeed = [self.array objectAtIndex:index];
     [self.array removeObjectAtIndex:index];
     [[NSUserDefaults standardUserDefaults] setObject:self.array forKey:kFeedsArrayKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -76,7 +82,7 @@ static NSString * const kFeedsArrayKey = @"kFeedsArrayKey";
     return removedFeed;
 }
 
-- (void)addSource:(NSString *)s {
+- (void)addSource:(Feed *)s {
     // Will hardcode that it is added alwasy first
     [self.array insertObject:s atIndex:0];
     [[NSUserDefaults standardUserDefaults] setObject:self.array forKey:kFeedsArrayKey];

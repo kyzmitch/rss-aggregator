@@ -9,13 +9,14 @@
 #import "NewsListPresenterImpl.h"
 #import <MWFeedParser/MWFeedParser.h>
 #import "NSString+Custom.h"
+#import "Feed.h"
 
 @interface NewsListPresenterImpl () <MWFeedParserDelegate>
 
 @property (weak, nonatomic) id<NewsListView> newsListView;
 @property (strong, nonatomic) dispatch_queue_t fetchQueue;
 @property (strong, nonatomic) dispatch_group_t group;
-@property (strong, nonatomic) NSMutableDictionary<NSString *, NSMutableArray<MWFeedItem *> *> *rssItems;
+@property (strong, nonatomic) NSMutableDictionary<Feed *, NSMutableArray<MWFeedItem *> *> *rssItems;
 
 @property (strong, nonatomic) NSString *newlyAddedSource;
 @property (strong, nonatomic) MWFeedParser *newlyAddedSourceFeedParser;
@@ -45,12 +46,12 @@
     return self;
 }
 
-- (void)fetchItemsForFeedSources:(NSArray<NSString *> *)sources {
+- (void)fetchItemsForFeedSources:(NSArray<Feed *> *)sources {
     [self.newsListView showProgress];
     self.group = dispatch_group_create();
     
     [self.rssItems removeAllObjects];
-    [sources enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [sources enumerateObjectsUsingBlock:^(Feed * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [self.rssItems setObject:[NSMutableArray new] forKey:obj];
     }];
     
@@ -61,8 +62,8 @@
         
         if (self) {
             dispatch_group_enter(self.group);
-            NSString *source = [sources objectAtIndex:ix];
-            NSURL *feedURL = [NSURL URLWithString:source];
+            Feed *source = [sources objectAtIndex:ix];
+            NSURL *feedURL = [NSURL URLWithString:source.address];
             MWFeedParser *feedParser = [[MWFeedParser alloc] initWithFeedURL:feedURL];
             feedParser.delegate = self;
             feedParser.feedParseType = ParseTypeFull;
@@ -106,8 +107,15 @@
 #pragma mark - MWFeedParserDelegate
 
 - (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item {
-    NSMutableArray *items = [self.rssItems objectForKey:parser.url.absoluteString];
-    [items addObject:item];
+    NSArray *keys = [self.rssItems allKeys];
+    for (Feed *key in keys) {
+        if ([key.address isEqualToString:parser.url.absoluteString]) {
+            
+            NSMutableArray *items = [self.rssItems objectForKey:key];
+            [items addObject:item];
+            break;
+        }
+    }
 }
 
 - (void)feedParserDidFinish:(MWFeedParser *)parser {
@@ -117,13 +125,21 @@
     else {
         self.newlyAddedSource = nil;
         self.newlyAddedSourceFeedParser = nil;
-        NSMutableArray *items = [self.rssItems objectForKey:parser.url.absoluteString];
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            [self.newsListView hideProgress];
-            [self.newsListView feedItemsLoaded:items :parser.url.absoluteString];
-        });
+        NSArray *keys = [self.rssItems allKeys];
+        for (Feed *key in keys) {
+            if ([key.address isEqualToString:parser.url.absoluteString]) {
+                
+                NSMutableArray *items = [self.rssItems objectForKey:key];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    [self.newsListView hideProgress];
+                    [self.newsListView feedItemsLoaded:items forSource:key];
+                });
+                break;
+            }
+        }
     }
 }
 

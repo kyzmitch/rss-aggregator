@@ -9,17 +9,19 @@
 #import <Foundation/Foundation.h>
 #import "CommonViewInterface.h"
 
+@class Feed;
+
 @protocol NewsListView <CommonViewInterface>
 
-- (void)feedItemsLoaded:(NSMutableDictionary<NSString *, NSMutableArray *> *)itemsDictionary;
-- (void)feedItemsLoaded:(NSMutableArray *) forSource:(NSString *)sourceAddess;
+- (void)feedItemsLoaded:(NSMutableDictionary<Feed *, NSMutableArray *> *)itemsDictionary;
+- (void)feedItemsLoaded:(NSMutableArray *)items forSource:(Feed *)sourceAddess;
 - (void)failedLoadFeedItems;
 
 @end
 
 @protocol NewsListPresenter <NSObject>
 
-- (void)fetchItemsForFeedSources:(NSArray<NSString *> *)sources;
-- (void)fetchItemsForOneSource:(NSString *)source;
+- (void)fetchItemsForFeedSources:(NSArray<Feed *> *)sources;
+- (void)fetchItemsForOneSource:(Feed *)source;
 
 @end

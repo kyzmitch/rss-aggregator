@@ -8,9 +8,11 @@
 
 #import "BaseViewController.h"
 
+@class Feed;
+
 @protocol FeedAddBackProtocol <NSObject>
 
-- (void)feedDidCreate:(NSString *)feedAddress;
+- (void)feedDidCreate:(Feed *)feedAddress;
 
 @end
 

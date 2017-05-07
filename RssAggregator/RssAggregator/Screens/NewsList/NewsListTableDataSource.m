@@ -8,6 +8,7 @@
 
 #import "NewsListTableDataSource.h"
 #import <MWFeedParser/MWFeedItem.h>
+#import "Feed.h"
 
 @implementation NewsListTableDataSource
 
@@ -18,14 +19,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSArray *keys = [self.source allKeys];
-    NSString *key = [keys objectAtIndex:section];
+    Feed *key = [keys objectAtIndex:section];
     return [self.source objectForKey:key].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"kNewsPreviewCellId" forIndexPath:indexPath];
     NSArray *keys = [self.source allKeys];
-    NSString *key = [keys objectAtIndex:indexPath.section];
+    Feed *key = [keys objectAtIndex:indexPath.section];
     id article = [[self.source objectForKey:key] objectAtIndex:indexPath.row];
     if ([article isKindOfClass:[MWFeedItem class]]) {
         MWFeedItem *item = article;
@@ -39,8 +40,8 @@
 
 - (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     NSArray *keys = [self.source allKeys];
-    NSString *key = [keys objectAtIndex:section];
-    return key;
+    Feed *key = [keys objectAtIndex:section];
+    return key.title;
 }
 
 @end

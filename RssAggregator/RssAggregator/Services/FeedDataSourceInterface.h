@@ -8,27 +8,29 @@
 
 #import <Foundation/Foundation.h>
 
+@class Feed;
+
 @protocol FeedsDelegate <NSObject>
 
 @required
-- (void)feedSourcesFetched:(NSArray<NSString *> *)sources;
+- (void)feedSourcesFetched:(NSArray<Feed *> *)sources;
 @optional
-- (void)feedDidAdd:(NSString *)value;
-- (void)feedDidRemove:(NSString *)feed;
-- (void)feedDidUpdatedAtIndex:(NSUInteger)index withSource:(NSString *)source;
+- (void)feedDidAdd:(Feed *)value;
+- (void)feedDidRemove:(Feed *)feed;
+- (void)feedDidUpdatedAtIndex:(NSUInteger)index withSource:(Feed *)source;
 
 @end
 
 @protocol FeedDataSourceInterface <NSObject>
 
 @required
-- (NSArray<NSString *> *)fetch;
+- (NSArray<Feed *> *)fetch;
 @property (weak, nonatomic) id<FeedsDelegate> delegate;
 
 @optional
-- (void)addSource:(NSString *)s;
-- (NSString *)removeSourceAtIndex:(NSUInteger)index;
-- (void)updateSourceAtIndex:(NSUInteger)index withSource:(NSString *)s;
+- (void)addSource:(Feed *)s;
+- (Feed *)removeSourceAtIndex:(NSUInteger)index;
+- (void)updateSourceAtIndex:(NSUInteger)index withSource:(Feed *)s;
 
 @end
 

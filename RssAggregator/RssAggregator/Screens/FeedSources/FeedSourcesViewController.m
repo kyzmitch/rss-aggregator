@@ -65,7 +65,7 @@
 
 #pragma mark - FeedSourcesView
 
-- (void)feedSourcesLoaded:(NSArray<NSString *> *)sources {
+- (void)feedSourcesLoaded:(NSArray<Feed *> *)sources {
     NSMutableArray *arr = [NSMutableArray arrayWithArray:sources];
     self.dataSource.dataSource = arr;
     self.tableDelegate.dataSource = arr;
@@ -76,13 +76,13 @@
     [self showAlertWithMessage:@"Failed load feed sources"];
 }
 
-- (void)feedRemoved:(NSString *)feed atIndex:(NSUInteger)ix {
+- (void)feedRemoved:(Feed *)feed atIndex:(NSUInteger)ix {
     [self.dataSource.dataSource removeObject:feed];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:ix inSection:0];
     [self.feedSources deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
-- (void)feedAdded:(NSString *)feedAddress {
+- (void)feedAdded:(Feed *)feedAddress {
     [self.dataSource.dataSource insertObject:feedAddress atIndex:0];
     NSIndexPath *path = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.feedSources insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationFade];
@@ -107,7 +107,7 @@
 
 #pragma mark - FeedAddBackProtocol
 
-- (void)feedDidCreate:(NSString *)feedAddress {
+- (void)feedDidCreate:(Feed *)feedAddress {
     [self.presenter addFeed:feedAddress];
 }
 

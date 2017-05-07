@@ -32,7 +32,7 @@
 - (void)loadFeedSources {
     [self.feedSourcesView showProgress];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSArray<NSString *> *sources = [self.feedsDataSource fetch];
+        NSArray<Feed *> *sources = [self.feedsDataSource fetch];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.feedSourcesView feedSourcesLoaded:sources];
             [self.feedSourcesView hideProgress];
@@ -43,7 +43,7 @@
 - (void)removeFeedSourceAtIndex:(NSUInteger)ix {
     [self.feedSourcesView showProgress];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSString *removedFeed = [self.feedsDataSource removeSourceAtIndex:ix];
+        Feed *removedFeed = [self.feedsDataSource removeSourceAtIndex:ix];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.feedSourcesView feedRemoved:removedFeed atIndex:ix];
             [self.feedSourcesView hideProgress];
@@ -52,7 +52,7 @@
 }
 
 
-- (void)addFeed:(NSString *)feedAddress {
+- (void)addFeed:(Feed *)feedAddress {
     [self.feedSourcesView showProgress];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self.feedsDataSource addSource:feedAddress];

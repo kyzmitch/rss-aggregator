@@ -7,6 +7,7 @@
 //
 
 #import "FeedSourcesTableViewDataSource.h"
+#import "Feed.h"
 
 @implementation FeedSourcesTableViewDataSource
 
@@ -16,7 +17,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"kFeedSourceCellId" forIndexPath:indexPath];
-    cell.textLabel.text = [self.dataSource objectAtIndex:indexPath.row];
+    Feed *feed = [self.dataSource objectAtIndex:indexPath.row];
+    cell.textLabel.text = feed.title;
+    
     cell.textLabel.numberOfLines = 0;
     return cell;
 }

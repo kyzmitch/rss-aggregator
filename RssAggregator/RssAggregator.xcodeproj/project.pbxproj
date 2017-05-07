@@ -11,6 +11,7 @@
 		843AC8301EBDDFB7007750BF /* AddFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843AC82F1EBDDFB7007750BF /* AddFeedViewController.m */; };
 		843AC8361EBE10BD007750BF /* FullArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843AC8351EBE10BD007750BF /* FullArticleViewController.m */; };
 		843AC8391EBE1D18007750BF /* NewsListTableDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 843AC8381EBE1D18007750BF /* NewsListTableDelegate.m */; };
+		843AC83C1EBEE1A1007750BF /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = 843AC83B1EBEE1A1007750BF /* Feed.m */; };
 		84F754BA1EBBB2EE0043F0DB /* FeedsLocalDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F754B91EBBB2EE0043F0DB /* FeedsLocalDataSource.m */; };
 		84F754BD1EBBC1AE0043F0DB /* NewsListTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F754BC1EBBC1AE0043F0DB /* NewsListTableDataSource.m */; };
 		84F754C31EBCFE0F0043F0DB /* NewsListPresenterImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F754C21EBCFE0F0043F0DB /* NewsListPresenterImpl.m */; };
@@ -39,6 +40,8 @@
 		843AC8351EBE10BD007750BF /* FullArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FullArticleViewController.m; path = Screens/FullArticle/FullArticleViewController.m; sourceTree = "<group>"; };
 		843AC8371EBE1D18007750BF /* NewsListTableDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsListTableDelegate.h; path = Screens/NewsList/NewsListTableDelegate.h; sourceTree = "<group>"; };
 		843AC8381EBE1D18007750BF /* NewsListTableDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsListTableDelegate.m; path = Screens/NewsList/NewsListTableDelegate.m; sourceTree = "<group>"; };
+		843AC83A1EBEE1A1007750BF /* Feed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Feed.h; path = Services/Feed.h; sourceTree = "<group>"; };
+		843AC83B1EBEE1A1007750BF /* Feed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Feed.m; path = Services/Feed.m; sourceTree = "<group>"; };
 		84F754B71EBBB2EE0043F0DB /* FeedDataSourceInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedDataSourceInterface.h; path = Services/FeedDataSourceInterface.h; sourceTree = "<group>"; };
 		84F754B81EBBB2EE0043F0DB /* FeedsLocalDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedsLocalDataSource.h; path = Services/FeedsLocalDataSource.h; sourceTree = "<group>"; };
 		84F754B91EBBB2EE0043F0DB /* FeedsLocalDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedsLocalDataSource.m; path = Services/FeedsLocalDataSource.m; sourceTree = "<group>"; };
@@ -125,6 +128,8 @@
 				84F754B71EBBB2EE0043F0DB /* FeedDataSourceInterface.h */,
 				84F754B81EBBB2EE0043F0DB /* FeedsLocalDataSource.h */,
 				84F754B91EBBB2EE0043F0DB /* FeedsLocalDataSource.m */,
+				843AC83A1EBEE1A1007750BF /* Feed.h */,
+				843AC83B1EBEE1A1007750BF /* Feed.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -367,6 +372,7 @@
 				C7C7183D1EBB8ED600E7874A /* AppDelegate.m in Sources */,
 				C7C7185F1EBB8FD100E7874A /* FeedSourcesViewController.m in Sources */,
 				84F754C91EBDB66A0043F0DB /* FeedSourcesTableDelegate.m in Sources */,
+				843AC83C1EBEE1A1007750BF /* Feed.m in Sources */,
 				843AC8301EBDDFB7007750BF /* AddFeedViewController.m in Sources */,
 				C7C7186E1EBB98FA00E7874A /* FeedSourcesTableViewDataSource.m in Sources */,
 				84F754BD1EBBC1AE0043F0DB /* NewsListTableDataSource.m in Sources */,

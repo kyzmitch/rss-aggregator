@@ -9,13 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "CommonViewInterface.h"
 
+@class Feed;
+
 @protocol FeedSourcesView <CommonViewInterface>
 
 @required
-- (void)feedSourcesLoaded:(NSArray<NSString *> *)sources;
+- (void)feedSourcesLoaded:(NSArray<Feed *> *)sources;
 - (void)failedLoadFeedSources;
-- (void)feedRemoved:(NSString *)feed atIndex:(NSUInteger)ix;
-- (void)feedAdded:(NSString *)feedAddress;
+- (void)feedRemoved:(Feed *)feed atIndex:(NSUInteger)ix;
+- (void)feedAdded:(Feed *)feedAddress;
 
 @end
 
@@ -24,6 +26,6 @@
 @required
 - (void)loadFeedSources;
 - (void)removeFeedSourceAtIndex:(NSUInteger)ix;
-- (void)addFeed:(NSString *)feedAddress;
+- (void)addFeed:(Feed *)feedAddress;
 
 @end

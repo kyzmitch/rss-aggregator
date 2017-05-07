@@ -7,6 +7,7 @@
 //
 
 #import "AddFeedViewController.h"
+#import "Feed.h"
 
 @interface AddFeedViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *feedNameField;
@@ -40,13 +41,18 @@
 }
 
 - (void)addPressed {
-    if (self.feedAddressField.text.length > 0) {
+    if (self.feedAddressField.text.length > 0 && self.feedNameField.text.length > 0) {
         NSString *address = [self.feedAddressField.text copy];
+        NSString *title = [self.feedNameField.text copy];
+        Feed *feed = [Feed new];
+        feed.title = title;
         if ([address hasPrefix:@"http://"] || [address hasPrefix:@"https://"]) {
-            [self.delegate feedDidCreate:address];
+            feed.address = address;
+            [self.delegate feedDidCreate:feed];
         }
         else {
-            [self.delegate feedDidCreate:[NSString stringWithFormat:@"https://%@", address]];
+            feed.address = [NSString stringWithFormat:@"https://%@", address];
+            [self.delegate feedDidCreate:feed];
         }
         
         [self.navigationController popViewControllerAnimated:YES];

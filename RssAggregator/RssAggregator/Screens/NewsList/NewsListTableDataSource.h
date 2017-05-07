@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@class Feed;
+
 @interface NewsListTableDataSource : NSObject <UITableViewDataSource>
 
-@property (strong, nonatomic) NSMutableDictionary<NSString *, NSMutableArray *> *source;
+@property (strong, nonatomic) NSMutableDictionary<Feed *, NSMutableArray *> *source;
 
 @end
