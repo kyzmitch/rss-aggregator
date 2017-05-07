@@ -112,22 +112,22 @@ typedef NS_ENUM(NSUInteger, LoadingType) {
 
 }
 
-- (void)updateItemsForIndex:(NSUInteger)index withSource:(Feed *)feed {
+- (void)updateItemsForOldFeed:(Feed *)oldFeed withSource:(Feed *)feed {
     typeof(self.newsListView) view = self.newsListView;
     [view showProgress];
     NSArray *keys = [self.rssItems allKeys];
-    Feed *key = [keys objectAtIndex:index];
+    NSUInteger index = [keys indexOfObject:oldFeed];
     
-    if ([key.address isEqualToString:feed.address]) {
+    if ([oldFeed.address isEqualToString:feed.address]) {
         // just need to update title
-        key.title = feed.title;
-        [view feedTitleUpdated:key forIndex:index];
+        oldFeed.title = feed.title;
+        [view feedTitleUpdated:oldFeed forIndex:index];
         [view hideProgress];
     }
     else {
         // clear
-        [self.rssItems removeObjectForKey:key];
-        [view feedRemoved:key fromIndex:index];
+        [self.rssItems removeObjectForKey:oldFeed];
+        [view feedRemoved:oldFeed fromIndex:index];
         
         // create new one
         [self.rssItems setObject:[NSMutableArray new] forKey:feed];

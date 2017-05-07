@@ -26,6 +26,6 @@
 
 - (void)fetchItemsForFeedSources:(NSArray<Feed *> *)sources;
 - (void)fetchItemsForOneSource:(Feed *)source;
-- (void)updateItemsForIndex:(NSUInteger)index withSource:(Feed *)feed;
+- (void)updateItemsForOldFeed:(Feed *)oldFeed withSource:(Feed *)feed;
 
 @end

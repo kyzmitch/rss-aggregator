@@ -100,7 +100,7 @@
     [[NSUserDefaults standardUserDefaults] rewriteFeeds:self.array];
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.delegate feedDidUpdatedAtIndex:ix withSource:newSource];
+        [self.delegate feedDidUpdated:s withSource:newSource];
     });
     
     return ix;

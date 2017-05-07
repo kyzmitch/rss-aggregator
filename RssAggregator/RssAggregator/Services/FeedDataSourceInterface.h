@@ -17,7 +17,7 @@
 @optional
 - (void)feedDidAdd:(Feed *)value;
 - (void)feedDidRemove:(Feed *)feed;
-- (void)feedDidUpdatedAtIndex:(NSUInteger)index withSource:(Feed *)source;
+- (void)feedDidUpdated:(Feed *)oldFeed withSource:(Feed *)source;
 
 @end
 

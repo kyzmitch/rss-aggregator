@@ -73,8 +73,8 @@
     [self.presenter fetchItemsForOneSource:value];
 }
 
-- (void)feedDidUpdatedAtIndex:(NSUInteger)index withSource:(Feed *)source {
-    [self.presenter updateItemsForIndex:index withSource:source];
+- (void)feedDidUpdated:(Feed *)oldFeed withSource:(Feed *)source {
+    [self.presenter updateItemsForOldFeed:oldFeed withSource:source];
 }
 
 #pragma mark - NewsListView
