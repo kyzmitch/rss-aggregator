@@ -10,11 +10,14 @@
 #import <MWFeedParser/MWFeedItem.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 
+static CGFloat kWidthDiff = 10.0;
+
 @interface FullArticleViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *articleImageView;
-@property (weak, nonatomic) IBOutlet UITextView *fullTextView;
+@property (weak, nonatomic) IBOutlet UILabel *fullTextLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *articleImageAspectConstraint;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollVIew;
 
 @end
 
@@ -24,10 +27,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(backPressed)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                                                                          target:self
+                                                                                          action:@selector(backPressed)];
     
     self.titleLabel.text = self.data.title;
-    self.fullTextView.text = self.data.summary;
+    self.fullTextLabel.text = self.data.summary;
     NSArray *enclosures = self.data.enclosures;
     NSString *urlStr;
     if (enclosures.count > 0) {
@@ -35,6 +40,13 @@
         NSDictionary *picture = [enclosures objectAtIndex:0];
         urlStr = [picture objectForKey:@"url"];
     }
+    
+    self.scrollVIew.translatesAutoresizingMaskIntoConstraints = NO;
+    self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.fullTextLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.titleLabel.numberOfLines = 0;
+    self.fullTextLabel.numberOfLines = 0;
+    
     if (urlStr) {
         [self.articleImageView sd_setImageWithURL:[NSURL URLWithString:urlStr]];
     }
@@ -47,8 +59,11 @@
                                                                    constant:0];
         [NSLayoutConstraint activateConstraints:@[height]];
     }
+    
+    CGFloat w = self.view.frame.size.width - kWidthDiff;
+    self.titleLabel.preferredMaxLayoutWidth = w;
+    self.fullTextLabel.preferredMaxLayoutWidth = w;
 }
-
 - (void)backPressed {
     [self.navigationController popViewControllerAnimated:YES];
 }

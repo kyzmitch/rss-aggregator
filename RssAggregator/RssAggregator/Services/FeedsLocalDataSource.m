@@ -42,6 +42,10 @@
         lentaFeed.address = @"https://lenta.ru/rss/news";
         [collection.array addObject:lentaFeed];
         
+        Feed *meduzaFeed = [Feed new];
+        meduzaFeed.title = @"Meduza";
+        meduzaFeed.address = @"https://meduza.io/rss/all";
+        [collection.array addObject:meduzaFeed];
         
         Feed *secondFeed = [Feed new];
         secondFeed.title = @"3D news";
